@@ -1,40 +1,47 @@
-name: Build WebGL
+name: Build Unity Project 🚀
 
 on:
   push:
-    branches: [main]
-  workflow_dispatch: {}
+    branches:
+      - main
+      - master
+  workflow_dispatch:
 
 jobs:
   build:
-    name: Build for WebGL
+    name: Build WebGL Game
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      # 1. Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           lfs: true
 
-      - name: Cache Library
+      # 2. Cache Library folder to speed up builds
+      - name: Cache Unity Library
         uses: actions/cache@v4
         with:
           path: Library
-          key: Library-WebGL-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          key: Library-${{ runner.os }}-${{ hashFiles('Assets/**', 'Packages/**') }}
           restore-keys: |
-            Library-WebGL-
-            Library-
+            Library-${{ runner.os }}-
 
-      - name: Build
+      # 3. Build Unity Project
+      - name: Unity Builder
         uses: game-ci/unity-builder@v4
         env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_SERVICE_ACCOUNT_KEY_ID: ${{ secrets.UNITY_SERVICE_ACCOUNT_KEY_ID }}
+          UNITY_SERVICE_ACCOUNT_KEY_SECRET: ${{ secrets.UNITY_SERVICE_ACCOUNT_KEY_SECRET }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: WebGL
+          unityVersion: auto
 
-      - name: Upload build
+      # 4. Upload Built Artifacts
+      - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: Build-WebGL
+          name: WebGL-Build
           path: build/WebGL
