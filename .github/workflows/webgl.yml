@@ -1,4 +1,4 @@
-name: Build Unity Project 🚀
+name: Build Unity WebGL Game 
 
 on:
   push:
@@ -9,16 +9,16 @@ on:
 
 jobs:
   build:
-    name: Build WebGL Game
+    name: Build WebGL
     runs-on: ubuntu-latest
     steps:
-      # 1. Checkout repository
+      # 1. جلب الكود من GitHub
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           lfs: true
 
-      # 2. Cache Library folder to speed up builds
+      # 2. عمل Cache لمجلد Library لتسريع البناء
       - name: Cache Unity Library
         uses: actions/cache@v4
         with:
@@ -27,7 +27,7 @@ jobs:
           restore-keys: |
             Library-${{ runner.os }}-
 
-      # 3. Build Unity Project
+      # 3. خطوة البناء عبر Unity Builder
       - name: Unity Builder
         uses: game-ci/unity-builder@v4
         env:
@@ -39,7 +39,7 @@ jobs:
           targetPlatform: WebGL
           unityVersion: auto
 
-      # 4. Upload Built Artifacts
+      # 4. رفع ناتج البناء (Build) على GitHub Artifacts
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
         with:
