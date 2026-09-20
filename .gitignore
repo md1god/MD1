@@ -19,3 +19,6 @@ Builds/
 Thumbs.db
 Desktop.ini
 *.dmp
+
+# Script logs
+*.log

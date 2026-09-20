@@ -1,0 +1,15 @@
+{
+  "name": "DiDo111 CC-Game (code)",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/git-lfs:1": {}
+  },
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": {
+      "label": "WebGL preview",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "postCreateCommand": "git lfs install && echo 'Codespace ready. NOTE: Unity Editor does not run in Codespaces - use this env for code editing, and serve a WebGL build folder on port 8080 to test in browser.'"
+}
