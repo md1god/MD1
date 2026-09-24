@@ -1,105 +1,93 @@
-# 🔄 MY_Turn.md - Central Coordination File
+# MY_TuRn.md — اتفاق الدور بين الفرق الثلاثة
 
-> **Central coordination hub for all agent teams. Single agent (Muse Spark) executes requests in turns. All teams coordinate here.**
-
----
-
-## 🤖 **Primary Agent: Muse Spark (Fast, Free, 1M Context)**
-- **Model:** `opencode/muse-spark-1.3-contributor-free`
-- **Role:** Single execution agent on local device
-- **Responsibility:** Execute ONE request at a time from the queue below
-- **Rotation:** If rate limited → `opencode/mimo-v2.6-flash-free` → `openrouter/nex-agi/nex-n2.5-pro:free`
+> الحالة: ACTIVE — 2026-09-24 بعد إعادة التشغيل  
+> القاعدة الذهبية: لا كود يُحذف. لا أصل يُحذف. توزيع واقعي أولاً. سرعة + خفة قبل أي كود.
+> المرجع الأعلى: رؤية اللعبة الكبرى في plan111.md (5000×5000×11، قصة 7 فصول/25 مرحلة، mdm1.org)
 
 ---
 
-## 📋 **REQUEST QUEUE (Single Thread - FIFO)**
+## 1) القواعد — للجميع
 
-| Turn | Team | Request | Status | Assigned To | Started | Completed |
-|------|------|---------|--------|-------------|---------|-----------|
-| 1 | **Cloud Deploy** | Create HF Space `cc-game-gateway` with Dockerfile | ❌ BLOCKED | Muse Spark | 2026-09-24 11:30 | Waiting for user to create HF Space manually |
-| 2 | **Cloud Deploy** | Set HF Space secrets (API keys) | ⏳ PENDING | Muse Spark | - | - |
-| 3 | **Cloud Deploy** | Connect HF Space to GitHub `md1god/MD1` | ⏳ PENDING | Muse Spark | - | - |
-| 4 | **Mobile Bridge** | Verify mobile pairing QR code works | ⏳ PENDING | Muse Spark | - | - |
-| 5 | **Chat Agent** | Add Fast Chat Agent (runware/big-pickle) to gateway | ⏳ PENDING | Muse Spark | - | - |
-| 4 | **Unity Build** | Build Production WebGL (GameScene + MainMenu + 9 chunks) | ⏳ PENDING | Muse Spark | - | - |
-| 5 | **Unity Play** | Upload Production build to Unity Play | ⏳ PENDING | Muse Spark | - | - |
-| 6 | **HF Sync** | Pull assets from `Dido599999/MD111` (AllStarModels) | ⏳ PENDING | Muse Spark | - | - |
-| 7 | **GitHub Sync** | Pull latest from `md1god/MD1` | ⏳ PENDING | Muse Spark | - | - |
-| 8 | **Blender Bridge** | Process D drive assets in Blender → glTF | ⏳ PENDING | Muse Spark | - | - |
-| 9 | **Asset Distribution** | Distribute assets across 11 chunks (7 regions) | ⏳ PENDING | Muse Spark | - | - |
-| 10 | **Unity Play** | Upload final build to play.unity.com | ⏳ PENDING | Muse Spark | - | - |
+1. **وكيل تنفيذ واحد على الجهاز فقط.** كل أوامر الجهاز (PowerShell/Unity/Blender/Git) تمر عبره. لا يفتح أحد باورشيل موازٍ.
+2. **الدور = FIFO.** الطلب يُكتب في جدول الانتظار أدناه. المنفذ يأخذ واحدًا، ينفذه، يوثق، ثم التالي. لا قفز.
+3. **المراقبة للجميع.** كل فريق يراجع سطر الإنجاز بالدليل (مسار ملف + حجم/طابع). خطأ = revert فورًا.
+4. **الخفة أولاً.** قبل أي عملية ثقيلة: فحص RAM/CPU. العمليات الثقيلة سحابيًا (HF/GitHub/Docker) لا على اللابتوب.
+5. **التوثيق ثنائي:** README.md (عام) + plan111.md (خطة) + MY_TuRn.md (هذا الملف) + memory/YYYY-MM-DD.md — كل تنفيذ يحدّثهم.
+6. **UTF-8 إلزامي** (`chcp 65001` + encoding='utf-8' + PYTHONIOENCODING=utf-8).
+7. **الأسرار لا تُكتب هنا.** كل توكن/مفتاح في readme111.md فقط (gitignored). هذا الملف عام.
 
 ---
 
-## 👥 **TEAM ROLES & LEADERS**
+## 2) الوكيل المنفذ الوحيد — Muse Spark
 
-| Team | Leader | Members | Channel |
-|------|--------|---------|---------|
-| **Cloud Deploy** | `cloud-lead` | hf-sync, github-sync, unity-cloud-bridge | `#cloud-deploy` |
-| **Mobile/Chat** | `mobile-lead` | mobile-bridge, fast-chat, blender-bridge | `#mobile-chat` |
-| **Unity Build** | `unity-lead` | unity-builder, unity-cloud-bridge, error-reviewer | `#unity-build` |
-| **Asset Pipeline** | `asset-lead` | hf-sync, github-sync, blender-bridge, asset-scout | `#asset-pipeline` |
-| **Monitoring** | `monitor-lead` | monitor, game-folder-monitor, hf-repo-monitor, github-repo-monitor | `#monitoring` |
+| البند | القيمة |
+|---|---|
+| الاسم | **Muse Spark** |
+| النموذج | `opencode/muse-spark-1.3-contributor-free` (أساسي) / `runware/muse-spark1.3` (احتياطي سحابي) — سياق كبير مجاني |
+| الدور | ينفذ طابور المهام بالدور على الجهاز. سريع، لا يخطئ، يوثق بالدليل |
+| يراقبه | الفرق الثلاثة + قادتها + monitor/reporter |
+| ممنوع عليه | فتح أكثر من باورشيل واحد، تكرار عمل منجز، حذف Assets أو كود |
 
----
-
-## 🔄 **EXECUTION PROTOCOL**
-
-### **For Muse Spark (Single Agent):**
-```
-1. READ this file → check first PENDING request
-2. EXECUTE that request completely
-4. UPDATE status to COMPLETED with timestamp
-5. WRITE result to memory/ folder
-6. REPEAT for next PENDING
-```
-
-### **For Team Leaders (Monitor Only):**
-```
-- READ this file every 5 minutes
-- DO NOT execute - only monitor queue
-- If Muse Spark stuck > 10 min → escalate in this file
-- Report status in team channel
-```
+> إن احتجت بديلاً سريعًا عند ضغط: `opencode/mimo-v2.6-flash-free` أو `openrouter/cohere/north-mini-code:free` — لكن المنفذ يبقى Spark.
 
 ---
 
-## 📊 **STATUS DEFINITIONS**
-- `⏳ PENDING` - Waiting for turn
-- `🔄 IN_PROGRESS` - Muse Spark executing
-- `✅ COMPLETED` - Done with result
-- `❌ BLOCKED` - Needs external input
-- `❌ FAILED` - Error, needs retry
+## 3) الفرق الثلاثة — التوزيع
+
+### الفريق A — العالم والتوزيع (World)
+- **القائد:** قائد العالم (يتواصل معك مباشرة)
+- **الأعضاء:** unity-builder + world-distributor + asset-scout
+- **مسؤوليات:** مسح وقياس الأصول داخل اللعبة (~1200 موديل: SimplePoly City 238، NPCs 230، Asuna 76...)، ضبط المقاسات (شخصية ~1.7m، سيارة ~4.6m)، توزيع واقعي (مدينة/غابة/صحراء/طرق/بحر عند توفره)، ملء Chunks الـ 9 الفارغة (حالياً 7.2KB)، سد الفراغات. لا كود.
+- **يطلب من المنفذ:** فتح Unity MCP لقياس mesh bounds، أوامر توزيع محدودة، لقطة شاشة بعد كل توزيع.
+
+### الفريق B — الأصول والبلندر (Assets/Blender)
+- **القائد:** قائد الأصول
+- **الأعضاء:** blender-bridge + asset-scout + hf-sync
+- **مسؤوليات:** جرد D: (D:\assets 0.65GB، D:\Unity111 3.38GB، D:\celestial-core111 6.14GB...)، فحص العظام (مفكك → إعادة ريق، بلا عظام → ديكور ثابت فقط)، Blender أولاً (apply transforms، متر، glTF)، رفع الأصول الصالحة HF Dido599999/MD111، طلب تحميل أصل ناقص (بحر/أطباق/ديناصور) منك.
+- **يطلب من المنفذ:** فتح Blender MCP، تصدير glTF، فحص rig.
+
+### الفريق C — السحابة والنشر والمراقبة (Cloud/Deploy/Monitor)
+- **القائد:** قائد السحابة
+- **الأعضاء:** unity-cloud-bridge + github-sync + hf-sync + monitor + monitor-reporter + game-folder-monitor + readme-keeper
+- **مسؤوليات:** تسليم WebGLMini (index.html 5785B + zip 46.4MB — تم البناء، بانتظار رفع Play)، دفع Git الخفيف (commit 42cad07 DONE)، نشر HF Space/Docker، heartbeat كل 5د سحابيًا، مراقبة RAM/CPU كل 5د قبل الخنق، ربط واتساب/تليجرام (رقم 201034033300)، CORS للانترو/الموسيقى/الصور.
+- **يطلب من المنفذ:** git push عبر Desktop credential، heartbeat سطر واحد، فحص موارد.
 
 ---
 
-## 📝 **EXECUTION LOG**
+## 4) طابور التنفيذ — FIFO (يكتب هنا، ينفذ بالدور)
 
-| Time | Turn | Action | Result |
-|------|------|--------|--------|
-| 2026-09-24 10:15 | - | File created | MY_Turn.md initialized |
-| 2026-09-24 11:30 | 1 | Create HF Space `cc-game-gateway` | ❌ BLOCKED - User must create HF Space manually at https://huggingface.co/new-space |
+| # | الطالب | المطلوب من المنفذ | الحالة | الدليل |
+|---|---|---|---|---|
+| 1 | فريق C | تأكيد دفع 42cad07 على origin/main (تم ✅ 08:00 لكن أعد التحقق) | ✅ DONE | git push origin main ✓ |
+| 2 | فريق A | قياس Kart + شخصية في المحرر عبر Unity MCP (مقياس حقيقي) | ⏳ انتظار دور |  |
+| 3 | فريق A | خطة ملء الـ 9 Chunks من أصول اللعبة (بدون نقل بعد) | ⏳ انتظار |  |
+| 4 | فريق B | فحص عينات D: للعظام (5 نماذج) عبر Blender MCP | ⏳ انتظار |  |
+| 5 | فريق C | رفع WebGLMini.zip إلى play.unity.com (يتطلب تسجيل دخولك) | ⏳ بانتظارك |  |
+| 6 | فريق B | طلب تحميل: بحر + طبق طائر + ديناصور (إن لم تكن في D:) | ⏳ انتظار تأكيدك |  |
 
----
-
-## 🚨 **ESCALATION RULES**
-1. If Muse Spark fails 3 times → Switch to fallback model
-2. If blocked > 15 min → Team Leader adds note here
-3. If critical failure → All teams notified via this file
-
----
-
-## 📁 **ASSOCIATED FILES**
-- `memory/` - Execution results stored here
-- `.opencode/reports/latest.md` - Monitor reports
-- `README.md` - Public status (verified facts only)
-- `readme111.md` - Private secrets (never committed)
+> لإضافة طلب: أضف صفًا جديدًا ولا تعدل صفًا قيد التنفيذ. المنفذ يأخذ #1 فقط.
 
 ---
 
-## 🎯 **CURRENT PRIORITY**
-**Turn 1: Create HF Space `cc-game-gateway` with Dockerfile**
+## 5) سجل الإنجاز — يكتب بعد كل تنفيذ (دليل لا ادعاء)
+
+| الوقت UTC | المنفذ | نفذ # | النتيجة | ملفات/دليل |
+|---|---|---|---|---|
+| 07:31 | OpenCode | — | حذف New Unity Project (8.76MB قالب فارغ) — لا مساس بـ Assets | False=deleted verified |
+| 04:28 | Unity | — | بناء WebGLMini DONE | index.html 5785B + Build/ 49MB |
+| 07:30 | OpenCode | — | ضغط WebGLMini.zip 46.4MB (index في الجذر) | verified direct |
+| ... | Muse Spark | — | (التالي هنا) |  |
+| 2026-09-24 12:15 | Muse Spark | Gateway Fix | Token mismatch fixed → WebSocket connected ✅ | `openclaw.json` line 139 |
 
 ---
 
-*Last Updated: 2026-09-24 | Next Review: Every 5 minutes by Monitor*
+## 6) قواعد التواصل بين القادة
+
+- كل قائد يكتب طلبه في §4 ويُشعر المنفذ.
+- القائد لا ينفذ بنفسه. يراجع §5 ويعترض كتابيًا إن وجد خطأ.
+- أي خلاف كود/أصل يُناقش في plan111.md §الحادثة قبل أي حذف.
+- اللغة: عربية للخطة، إنجليزية للكود/الـ logs.
+
+---
+
+*أنشأه: OpenCode — بتكليفك (Muse Spark منفذ وحيد). راجع كل سطر قبل التنفيذ.*
