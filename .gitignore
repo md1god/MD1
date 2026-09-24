@@ -22,3 +22,36 @@ Desktop.ini
 
 # Script logs
 *.log
+
+# LOCAL SECRETS - NEVER upload, NEVER push, NEVER share
+readme111.md
+OPENCLAW_WATCHER_PROMPT.md
+*.token
+.env.local
+.env
+*.pem
+*.key
+
+# Local build zips (upload manually, never push)
+WebGLMini.zip
+
+# OpenClaw local state
+.opencaw/
+.openclaw/openclaw.json
+
+# IDE / Editor
+.idea/
+*.swp
+*.swo
+
+# Docker
+docker-compose.override.yml
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Node
+node_modules/
+npm-debug.log*

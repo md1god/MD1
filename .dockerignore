@@ -1,0 +1,41 @@
+# Ignore everything except Dockerfile
+*
+!Dockerfile
+!Dockerfile.openclaw
+!.dockerignore
+
+# Unity project files (huge, not needed for gateway)
+Library/
+Temp/
+Logs/
+Builds/
+obj/
+*.csproj
+*.sln
+*.unitypackage
+
+# Node modules (installed in container)
+node_modules/
+package-lock.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large assets
+*.fbx
+*.obj
+*.png
+*.jpg
+*.exr
+*.hdr
+*.mp4
+*.mov
+*.wav
+*.ogg

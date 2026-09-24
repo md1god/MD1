@@ -1,0 +1,35 @@
+# Hugging Face Space for OpenClaw
+# Free tier: 16GB RAM, 2 vCPU, 24/7 uptime
+# Access via: https://huggingface.co/spaces/YOUR_USERNAME/openclaw-gateway
+
+FROM node:20-slim
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    python3 \
+    python3-pip \
+    curl \
+    wget \
+    vim \
+    htop \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install OpenClaw globally
+RUN npm install -g openclaw@latest
+
+# Create workspace directory
+WORKDIR /workspace
+
+# Create openClaw config directory
+RUN mkdir -p /root/.config/openclaw
+
+# Expose gateway port (default 8080)
+EXPOSE 8080
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD curl -f http://localhost:8080/health || exit 1
+
+# Start gateway in foreground with dev mode (auto-config)
+CMD ["npx", "openclaw", "gateway", "run", "--dev", "--bind", "0.0.0.0", "--port", "8080", "--auth", "none"]
