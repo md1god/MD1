@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Core/Core.unity
+    guid: 6b8b5556372142e4f90c7e8277a55194
+  - enabled: 1
+    path: Assets/Scenes/World/Scene_06_City_Core.unity
+    guid: 1ed09bcee85bb0c43bcb26a9e218b2b6
+  - enabled: 1
+    path: Assets/Scenes/World/Scene_05_City_South.unity
+    guid: 233228a4c58904f4fa3afcfde8256ad9
+  - enabled: 1
+    path: Assets/Scenes/World/Scene_07_City_North.unity
+    guid: 6e22686f19f6f4c428afd18e9b06f807
+  - enabled: 1
+    path: Assets/Scenes/World/Scene_04_Forest_North.unity
+    guid: 1a12caf2f8a065d489be8ba24418e6a4
+  - enabled: 1
+    path: Assets/Scenes/World/Scene_03_Forest_Core.unity
+    guid: 7259d7a311bb79049b5e3ef9fd2d62fd
+  - enabled: 1
+    path: Assets/Scenes/World/Scene_02_Forest_South.unity
+    guid: 6d5eb6cad8eb8f7459e54c805946845f
+  - enabled: 1
+    path: Assets/Scenes/World/Scene_08_Desert_South.unity
+    guid: 4f6558753ad3fad4a8b190f10976f704
+  - enabled: 1
+    path: Assets/Scenes/World/Scene_09_Sumer_Temple.unity
+    guid: aea6d9ecd6955a1428b8b197cb6a16c2
+  - enabled: 1
+    path: Assets/Scenes/World/Scene_10_Giza_Desert.unity
+    guid: 2b0721f0e970c6140ac9c06a0baca520
+  - enabled: 1
+    path: Assets/Scenes/World/Scene_01_Sea_South.unity
+    guid: 269e993eb08f9b44e8013264b9389966
+  - enabled: 1
+    path: Assets/Scenes/World/Scene_11_Sea_North.unity
+    guid: 64eb1a4f7fe270842b3d76c1a0c0135d
+  m_configObjects:
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  m_UseUCBPForAssetBundles: 0

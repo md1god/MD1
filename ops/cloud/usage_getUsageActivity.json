@@ -1,0 +1,1351 @@
+{
+  "data": [
+    {
+      "startDate": "2026-09-01",
+      "endDate": "2026-09-28",
+      "usage": {
+        "timeseries": {
+          "data": [
+            {
+              "date": "2026-09-01",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-02",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-03",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-04",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-05",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-06",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-07",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-08",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-09",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-10",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-11",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-12",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-13",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-14",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-15",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-16",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-17",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-18",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-19",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-20",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-21",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-22",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-23",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-24",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-25",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-26",
+              "spend": 0,
+              "count": 0
+            },
+            {
+              "date": "2026-09-27",
+              "count": 100,
+              "spend": 0.211965
+            },
+            {
+              "date": "2026-09-28",
+              "spend": 0,
+              "count": 0
+            }
+          ],
+          "meta": {
+            "totalRequests": 100,
+            "totalResults": 100,
+            "totalSpend": 0.212,
+            "avgDailySpend": 0.0079,
+            "projectedSpend": 0.24
+          }
+        },
+        "model": {
+          "data": [
+            {
+              "date": "2026-09-01",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-01",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-01",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-01",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-01",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-01",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-02",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-02",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-02",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-02",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-02",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-02",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-03",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-03",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-03",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-03",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-03",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-03",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-04",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-04",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-04",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-04",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-04",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-04",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-05",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-05",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-05",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-05",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-05",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-05",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-06",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-06",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-06",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-06",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-06",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-06",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-07",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-07",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-07",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-07",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-07",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-07",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-08",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-08",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-08",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-08",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-08",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-08",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-09",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-09",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-09",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-09",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-09",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-09",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-10",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-10",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-10",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-10",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-10",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-10",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-11",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-11",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-11",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-11",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-11",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-11",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-12",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-12",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-12",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-12",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-12",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-12",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-13",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-13",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-13",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-13",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-13",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-13",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-14",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-14",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-14",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-14",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-14",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-14",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-15",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-15",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-15",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-15",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-15",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-15",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-16",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-16",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-16",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-16",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-16",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-16",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-17",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-17",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-17",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-17",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-17",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-17",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-18",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-18",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-18",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-18",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-18",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-18",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-19",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-19",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-19",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-19",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-19",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-19",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-20",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-20",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-20",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-20",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-20",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-20",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-21",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-21",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-21",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-21",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-21",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-21",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-22",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-22",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-22",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-22",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-22",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-22",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-23",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-23",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-23",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-23",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-23",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-23",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-24",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-24",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-24",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-24",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-24",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-24",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-25",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-25",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-25",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-25",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-25",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-25",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-26",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-26",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-26",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-26",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-26",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-26",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            },
+            {
+              "date": "2026-09-27",
+              "model": "alibaba:qwen@3.5-4b",
+              "count": 1,
+              "spend": 2e-06,
+              "modelName": "alibaba:qwen@3.5-4b"
+            },
+            {
+              "date": "2026-09-27",
+              "model": "alibaba:qwen@3.5-9b",
+              "count": 61,
+              "spend": 0.197557,
+              "modelName": "alibaba:qwen@3.5-9b"
+            },
+            {
+              "date": "2026-09-27",
+              "model": "deepseek:v4@flash",
+              "count": 2,
+              "spend": 0,
+              "modelName": "deepseek:v4@flash"
+            },
+            {
+              "date": "2026-09-27",
+              "model": "google-gemini-3-5-flash",
+              "count": 4,
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash"
+            },
+            {
+              "date": "2026-09-27",
+              "model": "openai:gpt-oss@120b",
+              "count": 30,
+              "spend": 0.014406,
+              "modelName": "openai:gpt-oss@120b"
+            },
+            {
+              "date": "2026-09-27",
+              "model": "openai:gpt@5.5-pro",
+              "count": 2,
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro"
+            },
+            {
+              "date": "2026-09-28",
+              "model": "alibaba:qwen@3.5-4b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-4b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-28",
+              "model": "alibaba:qwen@3.5-9b",
+              "spend": 0,
+              "modelName": "alibaba:qwen@3.5-9b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-28",
+              "model": "deepseek:v4@flash",
+              "spend": 0,
+              "modelName": "deepseek:v4@flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-28",
+              "model": "google-gemini-3-5-flash",
+              "spend": 0,
+              "modelName": "google-gemini-3-5-flash",
+              "count": 0
+            },
+            {
+              "date": "2026-09-28",
+              "model": "openai:gpt-oss@120b",
+              "spend": 0,
+              "modelName": "openai:gpt-oss@120b",
+              "count": 0
+            },
+            {
+              "date": "2026-09-28",
+              "model": "openai:gpt@5.5-pro",
+              "spend": 0,
+              "modelName": "openai:gpt@5.5-pro",
+              "count": 0
+            }
+          ],
+          "meta": {
+            "totalRequests": 100,
+            "totalResults": 100,
+            "totalSpend": 0.212,
+            "avgDailySpend": 0.0079,
+            "projectedSpend": 0.24
+          }
+        }
+      },
+      "taskType": "accountManagement",
+      "taskUUID": "de38cf4d-63e3-4f05-9926-69973e99e296",
+      "operation": "getUsageActivity"
+    }
+  ]
+}

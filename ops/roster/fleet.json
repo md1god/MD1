@@ -1,0 +1,56 @@
+{
+  "windowNote": "opencode/space-bunny-free has ~3 days left. Run the fleet now. Owner instruction 2026-09-27.",
+  "rules": [
+    "Every job is a free model. No paid model, no credits, ever.",
+    "owns[] is exclusive. fleet.py refuses to start if two jobs overlap.",
+    "A closes the Unity Editor to free the batchmode lock, then reopens it.",
+    "No job may edit Core.unity in wave 1 - agent A is reading it."
+  ],
+  "jobs": [
+    {
+      "slot": "A",
+      "title": "SEE THE GAME - screenshot the real thing",
+      "model": "opencode/space-bunny-free",
+      "task": "D:\\CC_GAME_1\\ops\\roster\\tasks\\F-A-see.md",
+      "owns": ["ops/shots/"]
+    },
+    {
+      "slot": "B",
+      "title": "Car audit - why there is no car",
+      "model": "opencode/muse-spark-1.3-contributor-free",
+      "task": "D:\\CC_GAME_1\\ops\\roster\\tasks\\F-B-car.md",
+      "owns": ["ops/reports/"]
+    },
+    {
+      "slot": "C",
+      "title": "Fix broken scene names (GameScene)",
+      "model": "opencode/longcat-2.5-preview-free",
+      "task": "D:\\CC_GAME_1\\ops\\roster\\tasks\\F-C-scenes.md",
+      "owns": [
+        "Assets/_Game/Scripts/MainMenu.cs",
+        "Assets/_Game/Scripts/ChunkSceneManager.cs"
+      ]
+    },
+    {
+      "slot": "D",
+      "title": "Clean repo and push CC_GAME_1",
+      "model": "opencode/mimo-v2.6-flash-free",
+      "task": "D:\\CC_GAME_1\\ops\\roster\\tasks\\F-D-repo.md",
+      "owns": ["C:/Users/DiDo/Desktop/GitHub/MD111"]
+    },
+    {
+      "slot": "E",
+      "title": "Free Telegram chat that survives PC off",
+      "model": "opencode/ling-3.0-flash-fin-free",
+      "task": "D:\\CC_GAME_1\\ops\\roster\\tasks\\F-E-telegram.md",
+      "owns": ["ops/roster/telegram/"]
+    },
+    {
+      "slot": "F",
+      "title": "Can the cloud do the work? GitHub + free models",
+      "model": "opencode/space-bunny-free",
+      "task": "D:\\CC_GAME_1\\ops\\roster\\tasks\\F-F-cloud.md",
+      "owns": ["ops/cloud/"]
+    }
+  ]
+}

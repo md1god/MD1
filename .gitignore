@@ -36,7 +36,7 @@ OPENCLAW_WATCHER_PROMPT.md
 WebGLMini.zip
 
 # OpenClaw local state
-.opencaw/
+.openclaw/
 .openclaw/openclaw.json
 
 # IDE / Editor
@@ -55,3 +55,18 @@ __pycache__/
 # Node
 node_modules/
 npm-debug.log*
+
+# Unity generated (agent D - additions, nothing removed above)
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]serSettings/
+
+# 12GB of binary art stays on HuggingFace (Dido599999/MD111), never in git
+*.glb
+*.blend
+*.psd
+*.exr
+*.hdr

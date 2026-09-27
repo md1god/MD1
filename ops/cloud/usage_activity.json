@@ -1,0 +1,21 @@
+{
+  "data": [],
+  "errors": [
+    {
+      "code": "invalidStartDate",
+      "message": "Invalid value for 'startDate' parameter. Start date must be a valid date in YYYY-MM-DD format.",
+      "parameter": "startDate",
+      "type": "string",
+      "documentation": "https://runware.ai/docs/utilities/account-management#request-startdate",
+      "taskUUID": "0b499982-215d-4f5c-abe3-a8190bb59b23"
+    },
+    {
+      "code": "invalidEndDate",
+      "message": "Invalid value for 'endDate' parameter. End date must be a valid date in YYYY-MM-DD format.",
+      "parameter": "endDate",
+      "type": "string",
+      "documentation": "https://runware.ai/docs/utilities/account-management#request-enddate",
+      "taskUUID": "0b499982-215d-4f5c-abe3-a8190bb59b23"
+    }
+  ]
+}

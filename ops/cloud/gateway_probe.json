@@ -1,0 +1,55 @@
+{
+  "host": "886841a9.openclaw.runware.run",
+  "attempts": [
+    {
+      "token_fp": "dfe987..1498(len=64)",
+      "ok": false,
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token_fp": "f0edca..3f38(len=64)",
+      "ok": false,
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token_fp": "0b6f6d..accf(len=64)",
+      "ok": false,
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token_fp": "oc_sk_..cv2R(len=51)",
+      "ok": false,
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token_fp": "gsk_hZ..yMkN(len=56)",
+      "ok": false,
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token_fp": "976650..a9bc(len=36)",
+      "ok": false,
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token_fp": "ABMXeB..UOkG(len=32)",
+      "ok": false,
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token_fp": "AAFaZc..lbgY(len=35)",
+      "ok": false,
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token_fp": "SEG8nT..hbfg(len=54)",
+      "ok": false,
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token_fp": "hf_Its..wNWc(len=37)",
+      "ok": false,
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    }
+  ]
+}

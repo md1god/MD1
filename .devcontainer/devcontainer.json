@@ -14,5 +14,5 @@
       "onAutoForward": "openPreview"
     }
   },
-  "postCreateCommand": "git lfs install && echo 'Codespace ready. NOTE: Unity Editor does not run in Codespaces - use this env for code editing, and serve a WebGL build folder on port 8080 to test in browser.'"
+  "postCreateCommand": "git lfs install && if command -v openclaw >/dev/null 2>&1; then bash openclaw.provision.sh; else echo 'openclaw not on PATH here - skipping cloud provisioning'; fi && echo 'Codespace ready. NOTE: Unity Editor does not run in Codespaces - use this env for code editing, and serve a WebGL build folder on port 8080 to test in browser.'"
 }

@@ -1,0 +1,62 @@
+﻿[
+    {
+        "model":  "opencode/space-bunny-free",
+        "verdict":  "WORKS",
+        "sec":  168.5
+    },
+    {
+        "model":  "opencode/big-pickle",
+        "verdict":  "WORKS",
+        "sec":  11.7
+    },
+    {
+        "model":  "opencode/ling-3.0-flash-fin-free",
+        "verdict":  "WORKS",
+        "sec":  2.4
+    },
+    {
+        "model":  "opencode/longcat-2.5-preview-free",
+        "verdict":  "WORKS",
+        "sec":  4.4
+    },
+    {
+        "model":  "opencode/muse-spark-1.3-contributor-free",
+        "verdict":  "WORKS",
+        "sec":  24.1
+    },
+    {
+        "model":  "opencode/mimo-v2.6-flash-free",
+        "verdict":  "WORKS",
+        "sec":  3.1
+    },
+    {
+        "model":  "opencode/nemotron-3.5-lightning-free",
+        "verdict":  "ANSWERED?",
+        "sec":  55.6
+    },
+    {
+        "model":  "openrouter/nex-agi/nex-n2.5-mini:free",
+        "verdict":  "DEAD",
+        "sec":  2.4
+    },
+    {
+        "model":  "openrouter/nvidia/nemotron-3.5-lightning:free",
+        "verdict":  "DEAD",
+        "sec":  93.1
+    },
+    {
+        "model":  "openrouter/dots-studio/dots-3-note-preview:free",
+        "verdict":  "DEAD",
+        "sec":  88
+    },
+    {
+        "model":  "groq/allam-2-7b",
+        "verdict":  "DEAD",
+        "sec":  0.4
+    },
+    {
+        "model":  "groq/groq/compound",
+        "verdict":  "DEAD",
+        "sec":  0.3
+    }
+]

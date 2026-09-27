@@ -1,0 +1,122 @@
+{
+  "$comment": "CC_GAME_1 roster. Numbers are PERMANENT - never reused, never reassigned. Every model here was probed on this machine; probe_models.py is the source of truth.",
+  "verifiedOn": "2026-09-27",
+  "scope": "ONE goal only: distribute the assets, build the open world, drive a car in it, then test and watch.",
+  "host": {
+    "platform": "win32",
+    "project": "D:\\CC_GAME_1",
+    "opencodeCli": "C:\\Users\\DiDo\\AppData\\Local\\Programs\\@opencodedesktop\\resources\\opencode-cli.exe",
+    "opencodeVersion": "2.0.18"
+  },
+  "probeEvidence": {
+    "command": "python ops/roster/probe_models.py",
+    "results": "ops/roster/probe_results.json",
+    "note": "A model being listed in `opencode models` proves nothing. 9 of 13 candidates failed."
+  },
+  "banned": {
+    "$comment": "Proven to demand money or a privacy opt-in. dispatch.py refuses these even if added to agents by mistake.",
+    "models": [
+      "opencode-go/hy3",
+      "opencode-go/hy4-preview",
+      "opencode-go/longcat-2.5-preview-free",
+      "opencode-go/kimi-k2.7-code",
+      "opencode-go/deepseek-v4-flash",
+      "opencode/go/grok-build-0.1",
+      "opencode/qwen3.8-max",
+      "opencode/qwen3.6-plus",
+      "opencode/gpt-5.5-pro",
+      "opencode/claude-opus-5-5",
+      "opencode/claude-sonnet-5",
+      "opencode/gemini-3.8-flash",
+      "opencode/glm-5.3"
+    ],
+    "rule": "Zero-cost only. No exceptions, no approvals. Owner instruction, 2026-09-27."
+  },
+  "agents": {
+    "1-big-pickle": {
+      "number": 1,
+      "name": "Big Pickle",
+      "model": "opencode/big-pickle",
+      "role": "المدير — صاحب القرار النهائي",
+      "costPerRun": 0,
+      "probe": "PROBE-OK in 8.6s",
+      "owns": [
+        "ops/roster/",
+        "ProjectSettings/",
+        "Assets/Scenes/",
+        "PLAN.md",
+        "YOUR_TURN",
+        "AGENTS.md"
+      ],
+      "duty": "يشخّص، يقرر، يصلح البنية، يشغّل التحقق، يحدّث README، يوزّع المهام"
+    },
+    "2-space-bunny": {
+      "number": 2,
+      "name": "Space Bunny",
+      "model": "opencode/space-bunny-free",
+      "role": "البرمجة — سكربتات اللعبة",
+      "costPerRun": 0,
+      "probe": "PROBE-OK in 9.7s",
+      "owns": [
+        "Assets/_Game/Scripts/",
+        "Assets/_Game/Resources/"
+      ],
+      "duty": "فيزياء السيارة، البثّ، الـmanifest، أي سكربت لعب"
+    },
+    "3-muse-spark": {
+      "number": 3,
+      "name": "Muse Spark",
+      "model": "opencode-go/muse-spark-1.3-contributor",
+      "role": "المدقق — يراجع الأدوات والبناء قبل أن تُشغَّل",
+      "costPerRun": 0,
+      "status": "ACTIVE",
+      "ownerConfirmedWorking": "2026-09-27 — صاحب المشروع شغّله من تطبيق OpenCode وردّ وتوقّف عند العقد بشكل صحيح.",
+      "cliTransport": "FAIL. opencode-cli.exe returns: 'This Go model trains on request data. Allow paid endpoints that train on request data in your workspace's Privacy settings'. The desktop app sends the consent flag; the CLI does not.",
+      "howToRun": "افتحه من تطبيق OpenCode على مجلد D:\\CC_GAME_1 واسأله بذكاء. لا تشغّله عبر dispatch.py.",
+      "owns": ["docs/", "Assets/Editor/REVIEW/"],
+      "duty": "يراجع أدوات بناء العالم قبل تشغيلها، ويوثّق الأخطار في docs/"
+    },
+    "4-ling-flash": {
+      "number": 4,
+      "name": "Ling Flash",
+      "model": "opencode/ling-3.0-flash-fin-free",
+      "role": "موزّع الأصول — يحسب ويخطّط ويوزّع",
+      "costPerRun": 0,
+      "probe": "PROBE-OK in 5.4s  (fastest on the roster)",
+      "owns": [
+        "ops/distribution/",
+        "Assets/_Game/Resources/WorldManifest.txt"
+      ],
+      "duty": "يعدّ ما يجب توزيعه، يخطّط كم أين، يعدّل المانيفست، يعدّ لقطات المنظر. لا يكتب سكربتات."
+    },
+    "5-longcat": {
+      "number": 5,
+      "name": "Longcat",
+      "model": "opencode/longcat-2.5-preview-free",
+      "role": "المدقّق النهائي — بناء واختبار",
+      "costPerRun": 0,
+      "probe": "PROBE-OK in 13.5s",
+      "owns": [
+        "ops/verify/"
+      ],
+      "duty": "يشغّل فحص الكمبايل، يفحص الـbuild، يتحقق أن السيارة تتحرك والعالم يُحمَّل. يرفض العمل إن فشل الفحص."
+    }
+  },
+  "policy": {
+    "zeroCostOnly": true,
+    "bannedModelsEnforced": true,
+    "oneOwnerPerPath": true,
+    "verifyEveryHandoff": true,
+    "noNewGameFeatures": "Scope is asset distribution + open world + drivable car. Nothing else.",
+    "lesson2026_09_27": "A probe that fails through ONE transport does not mean the model is dead. opencode-go/muse-spark-1.3 fails from opencode-cli.exe (missing consent flag) but works in the desktop app. I blacklisted a working agent on CLI evidence alone. Test the way the owner actually runs the agent before declaring it dead."
+  },
+  "cloudOpenClaw": {
+    "$comment": "Separate container. CANNOT see D:\\CC_GAME_1. Never use it to edit project files.",
+    "gateway": "https://886841a9.openclaw.runware.run",
+    "container": "openclaw-886841a9-0",
+    "freeModel": "runware/openai-gpt-oss-120b",
+    "channels": "none connected",
+    "hasOpenCodeCli": "1.18.32",
+    "hasDocker": false
+  }
+}

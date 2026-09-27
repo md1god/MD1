@@ -1,50 +1,76 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// حركة شخصية بسيطة - WASD + مسافة للقفز
-// التركيب: Capsule + CharacterController + هذا السكربت + Tag = Player
+// SimplePlayer: WASD/Arrows movement + Space jump.
+// WebGL-compatible. Attach to Capsule with CharacterController, Tag = "Player".
 [RequireComponent(typeof(CharacterController))]
 public class SimplePlayer : MonoBehaviour
 {
-    public float speed = 5f;
-    public float jump = 4f;
+    public float speed = 6f;
+    public float sprintMultiplier = 1.8f;
+    public float jump = 5f;
+    public float gravity = -14f;
+    public float rotationSpeed = 12f;
+
     float vy;
     CharacterController cc;
+    InputAction moveAction, jumpAction, sprintAction;
 
-    void Awake() { cc = GetComponent<CharacterController>(); }
+    void Awake()
+    {
+        cc = GetComponent<CharacterController>();
+        var map = new InputActionMap("Player");
+        moveAction = map.AddAction("Move", binding: "<Gamepad>/leftStick");
+        moveAction.AddCompositeBinding("2DVector")
+            .With("Up", "<Keyboard>/w").With("Up", "<Keyboard>/upArrow")
+            .With("Down", "<Keyboard>/s").With("Down", "<Keyboard>/downArrow")
+            .With("Left", "<Keyboard>/a").With("Left", "<Keyboard>/leftArrow")
+            .With("Right", "<Keyboard>/d").With("Right", "<Keyboard>/rightArrow");
+        jumpAction = map.AddAction("Jump", binding: "<Keyboard>/space");
+        sprintAction = map.AddAction("Sprint", binding: "<Keyboard>/leftShift");
+        map.Enable();
+    }
+
+    void OnDestroy()
+    {
+        moveAction?.Dispose();
+        jumpAction?.Dispose();
+        sprintAction?.Dispose();
+    }
 
     void Update()
     {
-        if (Keyboard.current == null) return;
-        var kb = Keyboard.current;
+        if (moveAction == null) return;
 
-        float h = (kb.dKey.isPressed || kb.rightArrowKey.isPressed ? 1 : 0)
-                - (kb.aKey.isPressed || kb.leftArrowKey.isPressed ? 1 : 0);
-        float v = (kb.wKey.isPressed || kb.upArrowKey.isPressed ? 1 : 0)
-                - (kb.sKey.isPressed || kb.downArrowKey.isPressed ? 1 : 0);
+        Vector2 input = moveAction.ReadValue<Vector2>();
+        bool sprint = sprintAction.IsPressed();
+        bool jumpInput = jumpAction.WasPressedThisFrame();
 
-        // حركة نسبية للكاميرا
         var cam = Camera.main;
         Vector3 fwd = cam ? Vector3.ProjectOnPlane(cam.transform.forward, Vector3.up).normalized : Vector3.forward;
         if (fwd.sqrMagnitude < 0.001f) fwd = Vector3.forward;
         Vector3 right = Vector3.Cross(Vector3.up, fwd).normalized;
 
-        Vector3 move = (fwd * v + right * h);
+        Vector3 move = (fwd * input.y + right * input.x);
         if (move.magnitude > 1f) move.Normalize();
-        move *= speed;
+
+        float currentSpeed = speed * (sprint ? sprintMultiplier : 1f);
+        move *= currentSpeed;
 
         if (cc.isGrounded)
         {
             vy = -1f;
-            if (kb.spaceKey.wasPressedThisFrame) vy = jump;
+            if (jumpInput) vy = jump;
         }
-        else vy += -12f * Time.deltaTime;
+        else vy += gravity * Time.deltaTime;
 
         move.y = vy;
         cc.Move(move * Time.deltaTime);
 
-        if (h != 0 || v != 0)
-            transform.rotation = Quaternion.Slerp(transform.rotation,
-                Quaternion.LookRotation(new Vector3(move.x, 0, move.z)), 10f * Time.deltaTime);
+        if (input.sqrMagnitude > 0.01f)
+        {
+            var targetRot = Quaternion.LookRotation(new Vector3(move.x, 0, move.z));
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, rotationSpeed * Time.deltaTime);
+        }
     }
 }

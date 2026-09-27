@@ -1,0 +1,21 @@
+{
+  "data": [],
+  "errors": [
+    {
+      "code": "missingStartDate",
+      "message": "Missing 'startDate' parameter. A start date must be provided to query usage.",
+      "parameter": "startDate",
+      "type": "string",
+      "documentation": "https://runware.ai/docs/utilities/account-management#request-startdate",
+      "taskUUID": "e6da98bd-f10f-4943-8d59-13fb57d4b538"
+    },
+    {
+      "code": "missingEndDate",
+      "message": "Missing 'endDate' parameter. An end date must be provided to query usage.",
+      "parameter": "endDate",
+      "type": "string",
+      "documentation": "https://runware.ai/docs/utilities/account-management#request-enddate",
+      "taskUUID": "e6da98bd-f10f-4943-8d59-13fb57d4b538"
+    }
+  ]
+}

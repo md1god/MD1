@@ -1,4 +1,4 @@
-# GAME + REPO MONITORS — 5-MINUTE WATCHDOG (PS1 + Scheduled Task)
+﻿# GAME + REPO MONITORS — 5-MINUTE WATCHDOG (PS1 + Scheduled Task)
 # Installed by OpenCode agent 2026-09-24. Runs every 5 minutes via Windows Task Scheduler.
 # Reads current state of the game folder, compares last snapshot, appends to memory + report.
 
@@ -19,15 +19,12 @@ $now = Get-Date -Format 'yyyy-MM-dd HH:mm:ss'
 $utc = (Get-Date).ToUniversalTime().ToString('yyyy-MM-dd HH:mm:ss') + ' UTC'
 
 # ---- 1. Game folder snapshot (hash of key state: build artifacts + scripts mtime sum) ----
-$track = @(
-  'Builds\WebGLMini\index.html',
-  'TASKS.md',
-  'Logs'
-)
 $folderState = Get-ChildItem -Path $gameRoot -Recurse -File -ErrorAction SilentlyContinue |
   Where-Object { $_.FullName -notmatch '\\(Library|Temp|obj|Logs|memory)\\' -and $_.Extension -in '.cs','.unity','.html','.shader','.prefab' } |
-  Measure-Object -Property Length -Sum -Maximum
-$folderHash = $folderState | ForEach-Object { "$($_.Sum)" }
+  Measure-Object -Property Length -Sum
+# Scalar, not an array: this value is persisted to snapshot.json and compared
+# against the previous run, so it must round-trip as a single value.
+$folderHash = [string]($folderState.Sum)
 
 # Build artifact existence
 $hasIndex = Test-Path (Join-Path $gameRoot 'Builds\WebGLMini\index.html')
@@ -57,13 +54,16 @@ $lines += "🐙 GitHub repo: https://github.com/md1god/MD1"
 $lines += "⏭ Next: agent-rotation @ +5min (see .opencode/agents/monitor-reporter.md)"
 
 # Save snapshot
-@{ timestamp = $now; folderHash = $folderHash; build = $buildInfo } | ConvertTo-Json -Compress | Set-Content $snapshotFile
+@{ timestamp = $now; folderHash = $folderHash; build = $buildInfo } | ConvertTo-Json -Compress | Set-Content $snapshotFile -Encoding utf8
 
 # Save latest report
-$lines | Set-Content $latestFile
+$lines | Set-Content $latestFile -Encoding utf8
+
+$body = ($lines | Select-Object -Skip 1) -join ' | '
+$block = ($lines | Select-Object -Skip 1) -join "`n"
 
 # Append to daily memory (one line)
-Add-Content -Path $memFile -Value ("`n[" + $now + "] [GAME-MONITOR] " + ($lines | Select-Object -Skip 1) -join ' | ')
+Add-Content -Path $memFile -Value ("`n[$now] [GAME-MONITOR] $body") -Encoding utf8
 
 Write-Output "OK $now | changed=$isChanged | $buildInfo"
-Write-Output ($lines | Select-Object -Skip 1) -join "`n"
+Write-Output $block

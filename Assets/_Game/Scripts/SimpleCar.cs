@@ -14,6 +14,7 @@ public class SimpleCar : MonoBehaviour
     Transform player;
     CharacterController playerCC;
     bool driving;
+    public bool driveDirect = false; // قيادة مباشرة بدون ركوب (للاختبار)
 
     void Start()
     {
@@ -24,17 +25,21 @@ public class SimpleCar : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current == null || !player) return;
         var kb = Keyboard.current;
+        if (kb == null) return;
 
-        if (kb.eKey.wasPressedThisFrame)
+        // E للركوب/النزول — يتجاهل الضغطة بأمان لو ما في لاعب
+        if (player && kb.eKey.wasPressedThisFrame)
         {
             float d = Vector3.Distance(player.position, transform.position);
             if (!driving && d < useDist) SetDrive(true);
             else if (driving) SetDrive(false);
         }
 
-        if (!driving) return;
+        // ما في لاعب = قيادة مباشرة على أي حال بدون ركوب
+        bool direct = driveDirect || player == null;
+        if (!driving && !direct) return;
+        driving = driving || direct;
 
         float v = (kb.wKey.isPressed || kb.upArrowKey.isPressed ? 1 : 0)
                 - (kb.sKey.isPressed || kb.downArrowKey.isPressed ? 1 : 0);
@@ -44,13 +49,14 @@ public class SimpleCar : MonoBehaviour
         transform.Rotate(0, h * turn * Time.deltaTime, 0);
         transform.Translate(0, 0, v * speed * Time.deltaTime);
 
-        player.position = seat.position;
+        if (!driveDirect && player) player.position = seat.position;
     }
 
     void SetDrive(bool on)
     {
         driving = on;
         if (playerCC) playerCC.enabled = !on;
+        if (!player) return; // لا لاعب = لا ركوب ولا نزول
         if (on) player.SetParent(transform);
         else
         {
