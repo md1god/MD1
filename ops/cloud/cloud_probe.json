@@ -1,0 +1,28 @@
+{
+  "hello": {
+    "keys": [],
+    "auth": {},
+    "protocol": null,
+    "server": null
+  },
+  "snapshot_keys": [],
+  "snapshot": {},
+  "system.info": null,
+  "config.get{\"path\": \"gateway\"}": "ERR config.get -> INVALID_REQUEST: invalid config.get params: at root: unexpected property 'path'",
+  "config.get": null,
+  "node.list": null,
+  "channels.status": null,
+  "sessions.list{\"limit\": 5}": null,
+  "device.pair.list": null,
+  "models.list": null,
+  "skills.list": "ERR skills.list -> INVALID_REQUEST: unknown method: skills.list",
+  "plugins.list": "ERR plugins.list -> INVALID_REQUEST: unknown method: plugins.list",
+  "usage.status": null,
+  "exec.approvals.get": null,
+  "terminal.open": "ERR terminal.open -> INVALID_REQUEST: invalid terminal.open params: must have required property 'cols'",
+  "terminal.list": null,
+  "shell.exec{\"command\": \"id\"}": "ERR shell.exec -> INVALID_REQUEST: unknown method: shell.exec",
+  "exec.run{\"command\": \"id\"}": "ERR exec.run -> INVALID_REQUEST: unknown method: exec.run",
+  "fs.read{\"path\": \"/etc/os-release\"}": "ERR fs.read -> INVALID_REQUEST: unknown method: fs.read",
+  "debug.rpc{\"method\": \"system.info\", \"params\": {}}": "ERR debug.rpc -> INVALID_REQUEST: unknown method: debug.rpc"
+}

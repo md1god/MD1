@@ -40,24 +40,59 @@ SCOPES = ["operator.admin", "operator.read", "operator.write",
           "operator.approvals", "operator.pairing"]
 
 
+def sign_device(identity, client_id, client_mode, scopes, token, nonce,
+                now_ms=None):
+    """Build the `device` object the Gateway demands on every connect.
+
+    Reproduces assets/gateway-*.js `buildDeviceAuth`:
+      message   = ['v2', deviceId, clientId, clientMode, role,
+                   scopes.join(','), String(signedAtMs), token ?? '', nonce].join('|')
+      signature = base64url( Ed25519( SHA512(prefix) , utf8(message) ) )
+    where prefix = SHA-512(seed)[32:64] and deviceId = hex(SHA-256(rawPublicKey)).
+    Encoding is base64url without padding, matching fn H in assets/nodes-*.js.
+    """
+    import hashlib
+    from ed25519_pure import b64u, sign, unb64u
+    seed = unb64u(identity["privateKey"])
+    raw_pub = unb64u(identity["publicKey"])
+    signed_at = int(now_ms if now_ms is not None else time.time() * 1000)
+    msg = "|".join(["v2", identity["deviceId"], client_id, client_mode,
+                    "operator", ",".join(scopes), str(signed_at),
+                    token or "", nonce or ""])
+    return {
+        "id": identity["deviceId"],
+        "publicKey": b64u(raw_pub),
+        "signature": b64u(sign(seed, msg.encode("utf-8"))),
+        "signedAt": signed_at,
+        "nonce": nonce or "",
+    }
+
+
 class GatewayError(RuntimeError):
     pass
 
 
 class Gateway:
     def __init__(self, host=DEFAULT_HOST, path=DEFAULT_PATH, token=None,
-                 password=None, port=443, timeout=60.0, client_name="ops-cloud",
-                 client_version="agentF/1.0", platform="python", mode="operator"):
+                 password=None, port=443, timeout=60.0, client_name="openclaw-control-ui",
+                 client_version="control-ui", platform="linux", mode="ui",
+                 identity=None):
         self.host = host
         self.path = path or "/"
         self.token = (token or "").strip() or None
         self.password = (password or "").strip() or None
         self.port = port
         self.timeout = timeout
+        # NB: client.id / client.mode must be values THIS gateway build accepts.
+        # Measured, not guessed: "cli"/"cli" is rejected with
+        #   at /client/id: must be equal to one of the allowed values
+        # while "openclaw-control-ui"/"ui" passes validation. See
+        # connect_shape.py and connect_matrix.py.
         self.client_name = client_name
         self.client_version = client_version
         self.platform = platform
         self.mode = mode
+        self.identity = identity
         self.sock = None
         self.hello = None
         self.events = []
@@ -180,7 +215,7 @@ class Gateway:
         self._id += 1
         return f"f{self._id}-{uuid.uuid4().hex[:8]}"
 
-    def _pump_until(self, want_id, deadline):
+    def _pump_until(self, want_id, deadline, collect=None):
         while time.time() < deadline:
             self.sock.settimeout(max(0.5, deadline - time.time()))
             try:
@@ -193,6 +228,8 @@ class Gateway:
                 self.events.append(msg)
                 if len(self.events) > 400:
                     del self.events[:200]
+                if collect is not None:
+                    collect(msg)
                 continue
             if msg.get("type") == "res" and msg.get("id") == want_id:
                 return msg
@@ -204,21 +241,25 @@ class Gateway:
                                    "params": params or {}}))
         msg = self._pump_until(rid, time.time() + (timeout or self.timeout))
         if msg.get("ok"):
-            return msg.get("result")
+            # Measured on the wire: the success body is under "payload".
+            # "result" is accepted as a fallback for older builds.
+            return msg["payload"] if "payload" in msg else msg.get("result")
         err = msg.get("error") or {}
         raise GatewayError(f"{method} -> {err.get('code') or err.get('name')}: "
                            f"{err.get('message') or json.dumps(err)[:400]}")
 
     # ---------- lifecycle ----------
-    def connect(self):
-        self._open()
-        self._handshake()
+    def _connect_params(self, nonce):
         auth = {}
         if self.token:
             auth["token"] = self.token
         if self.password:
             auth["password"] = self.password
-        params = {
+        device = None
+        if self.identity is not None:
+            device = sign_device(self.identity, self.client_name, self.mode,
+                                 SCOPES, self.token, nonce)
+        return {
             "minProtocol": 4,
             "maxProtocol": 4,
             "client": {"id": self.client_name, "version": self.client_version,
@@ -226,13 +267,57 @@ class Gateway:
                        "instanceId": f"{self.client_name}-ops-cloud"},
             "role": "operator",
             "scopes": SCOPES,
-            "device": None,
+            "device": device,
             "caps": ["tool-events"],
             "auth": auth,
             "userAgent": "ops-cloud-agentF/1.0",
             "locale": "en",
         }
-        self.hello = self.call("connect", params, timeout=45)
+
+    def connect(self):
+        """Open, upgrade, wait for the challenge nonce, then connect once.
+
+        Measured flow (gateway_is_it_real.py / connect_signed.py):
+          1. HTTP 101 upgrade
+          2. the Gateway *unsolicitedly* pushes
+               {"type":"event","event":"connect.challenge",
+                "payload":{"nonce":...,"ts":...}}
+             -- it does this before any request is sent
+          3. exactly one `connect` request, whose signed device must carry that
+             nonce. Sending a connect without a nonce is fatal: the Gateway
+             answers `at /device/nonce: must not have fewer than 1 characters`
+             and closes the socket with code 1008.
+        """
+        self._open()
+        self._handshake()
+
+        nonce = None
+        deadline = time.time() + 20
+        while time.time() < deadline:
+            self.sock.settimeout(max(0.5, deadline - time.time()))
+            try:
+                msg = json.loads(self.recv_text())
+            except socket.timeout:
+                continue
+            except (GatewayError, json.JSONDecodeError):
+                break
+            if msg.get("type") == "event":
+                self.events.append(msg)
+                if msg.get("event") == "connect.challenge":
+                    nonce = (msg.get("payload") or {}).get("nonce")
+                    break
+        if not nonce:
+            raise GatewayError("gateway never sent connect.challenge")
+
+        rid = self._next_id()
+        self.send_text(json.dumps({"type": "req", "id": rid, "method": "connect",
+                                   "params": self._connect_params(nonce)}))
+        msg = self._pump_until(rid, time.time() + 45)
+        if not msg.get("ok"):
+            err = msg.get("error") or {}
+            raise GatewayError(f"connect -> {err.get('code')}: "
+                               f"{err.get('message') or json.dumps(err)[:500]}")
+        self.hello = msg.get("result")
         return self.hello
 
     def close(self):

@@ -1,0 +1,846 @@
+{
+  "host": "886841a9.openclaw.runware.run",
+  "shape": {
+    "client_id": "cli",
+    "mode": "cli",
+    "device": "empty"
+  },
+  "schema_probe": [
+    {
+      "token": null,
+      "client_id": "cli",
+      "mode": "cli",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "cli",
+      "mode": "cli",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "cli",
+      "mode": "probe",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "cli",
+      "mode": "probe",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "cli",
+      "mode": "test",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "cli",
+      "mode": "test",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "cli",
+      "mode": "backend",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "cli",
+      "mode": "backend",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "cli",
+      "mode": "webchat",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "cli",
+      "mode": "webchat",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "cli",
+      "mode": "ui",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "cli",
+      "mode": "ui",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "cli",
+      "mode": "node",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "cli",
+      "mode": "node",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "gateway-client",
+      "mode": "cli",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "gateway-client",
+      "mode": "cli",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "gateway-client",
+      "mode": "probe",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "gateway-client",
+      "mode": "probe",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "gateway-client",
+      "mode": "test",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "gateway-client",
+      "mode": "test",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "gateway-client",
+      "mode": "backend",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "gateway-client",
+      "mode": "backend",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "gateway-client",
+      "mode": "webchat",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "gateway-client",
+      "mode": "webchat",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "gateway-client",
+      "mode": "ui",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "gateway-client",
+      "mode": "ui",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "gateway-client",
+      "mode": "node",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "gateway-client",
+      "mode": "node",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-probe",
+      "mode": "cli",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-probe",
+      "mode": "cli",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-probe",
+      "mode": "probe",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-probe",
+      "mode": "probe",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-probe",
+      "mode": "test",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-probe",
+      "mode": "test",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-probe",
+      "mode": "backend",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-probe",
+      "mode": "backend",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-probe",
+      "mode": "webchat",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-probe",
+      "mode": "webchat",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-probe",
+      "mode": "ui",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-probe",
+      "mode": "ui",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-probe",
+      "mode": "node",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-probe",
+      "mode": "node",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "test",
+      "mode": "cli",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "test",
+      "mode": "cli",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "test",
+      "mode": "probe",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "test",
+      "mode": "probe",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "test",
+      "mode": "test",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "test",
+      "mode": "test",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "test",
+      "mode": "backend",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "test",
+      "mode": "backend",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "test",
+      "mode": "webchat",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "test",
+      "mode": "webchat",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "test",
+      "mode": "ui",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "test",
+      "mode": "ui",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "test",
+      "mode": "node",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "test",
+      "mode": "node",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-control-ui",
+      "mode": "cli",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-control-ui",
+      "mode": "cli",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-control-ui",
+      "mode": "probe",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-control-ui",
+      "mode": "probe",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-control-ui",
+      "mode": "test",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-control-ui",
+      "mode": "test",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-control-ui",
+      "mode": "backend",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-control-ui",
+      "mode": "backend",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-control-ui",
+      "mode": "webchat",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-control-ui",
+      "mode": "webchat",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-control-ui",
+      "mode": "ui",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-control-ui",
+      "mode": "ui",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-control-ui",
+      "mode": "node",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "openclaw-control-ui",
+      "mode": "node",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "webchat",
+      "mode": "cli",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "webchat",
+      "mode": "cli",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "webchat",
+      "mode": "probe",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "webchat",
+      "mode": "probe",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "webchat",
+      "mode": "test",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "webchat",
+      "mode": "test",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "webchat",
+      "mode": "backend",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "webchat",
+      "mode": "backend",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "webchat",
+      "mode": "webchat",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "webchat",
+      "mode": "webchat",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "webchat",
+      "mode": "ui",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "webchat",
+      "mode": "ui",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "webchat",
+      "mode": "node",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "webchat",
+      "mode": "node",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "node-host",
+      "mode": "cli",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "node-host",
+      "mode": "cli",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "node-host",
+      "mode": "probe",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "node-host",
+      "mode": "probe",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "node-host",
+      "mode": "test",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "node-host",
+      "mode": "test",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "node-host",
+      "mode": "backend",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "node-host",
+      "mode": "backend",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "node-host",
+      "mode": "webchat",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "node-host",
+      "mode": "webchat",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "node-host",
+      "mode": "ui",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "node-host",
+      "mode": "ui",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "node-host",
+      "mode": "node",
+      "device": "empty",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": null,
+      "client_id": "node-host",
+      "mode": "node",
+      "device": "omitted",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    }
+  ],
+  "auth_probe": [
+    {
+      "token": "dfe987..1498(len=64)",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": "f0edca..3f38(len=64)",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": "0b6f6d..accf(len=64)",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": "oc_sk_..cv2R(len=51)",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": "gsk_hZ..yMkN(len=56)",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": "976650..a9bc(len=36)",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": "ABMXeB..UOkG(len=32)",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": "AAFaZc..lbgY(len=35)",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": "SEG8nT..hbfg(len=54)",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    },
+    {
+      "token": "hf_Its..wNWc(len=37)",
+      "result": "rejected",
+      "error": "connect -> INVALID_REQUEST: invalid connect params: at /client/id: must be equal to one of the allowed values; at /client/mode: must be equal to one of the allowed values; at /device: must be object"
+    }
+  ]
+}

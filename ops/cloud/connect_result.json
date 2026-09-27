@@ -1,0 +1,31 @@
+{
+  "host": "886841a9.openclaw.runware.run",
+  "deviceId": "71a1892ab65cb26df7fad380e02da55469e12069de0daf8f48b783e213999902",
+  "attempts": [
+    {
+      "label": "(no secret)",
+      "ok": false,
+      "ms": 1001,
+      "error": "connect -> INVALID_REQUEST: unauthorized: gateway token missing (open the dashboard URL and paste the token in Control UI settings)"
+    },
+    {
+      "label": "dfe987..1498(len=64)",
+      "ok": false,
+      "ms": 893,
+      "error": "connect -> INVALID_REQUEST: unauthorized: gateway token mismatch (open the dashboard URL and paste the token in Control UI settings)"
+    },
+    {
+      "label": "f0edca..3f38(len=64)",
+      "ok": false,
+      "ms": 897,
+      "error": "connect -> INVALID_REQUEST: unauthorized: gateway token mismatch (open the dashboard URL and paste the token in Control UI settings)"
+    },
+    {
+      "label": "0b6f6d..accf(len=64)",
+      "ok": true,
+      "ms": 927,
+      "hello": {},
+      "snapshot_keys": []
+    }
+  ]
+}

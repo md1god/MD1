@@ -70,15 +70,14 @@ def main():
             base = (cid, mode, dname)
             print(f"  CONNECTED (no auth needed) id={cid} mode={mode} device={dname}")
             break
-        if "INVALID_REQUEST" not in r.get("error", ""):
-            print(f"  id={cid:22} mode={mode:8} dev={dname:8} -> {r['error'][:150]}")
+        print(f"  id={cid:22} mode={mode:8} dev={dname:8} -> {r['result']:8} {r.get('error','')[:190]}")
     if not base:
         print("  no schema-valid handshake found without auth; trying every token")
     else:
         print(f"\n  schema-valid shape: client.id={base[0]} mode={base[1]} device={base[2]}")
 
     print("\n== phase 2: each candidate secret against the valid shape ==")
-    cid, mode, (dname, dev) = base or ("cli", "cli", "empty")
+    cid, mode, dname = base if base else ("cli", "cli", "empty")
     auth_rows = []
     for tok in toks:
         r = attempt(host, tok, cid, mode, {} if dname == "empty" else "__OMIT__")

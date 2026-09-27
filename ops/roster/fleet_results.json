@@ -1,56 +1,56 @@
 [
   {
-    "slot": "D",
-    "title": "Clean repo and push CC_GAME_1",
-    "model": "opencode/mimo-v2.6-flash-free",
-    "seconds": 111.3,
-    "timedOut": false,
-    "handoff": "D:\\CC_GAME_1\\ops\\roster\\handoff\\fleet-D-20260927-192857.md",
-    "stdoutTail": ""
-  },
-  {
-    "slot": "F",
-    "title": "Can the cloud do the work? GitHub + free models",
-    "model": "opencode/space-bunny-free",
-    "seconds": 108.4,
-    "timedOut": false,
-    "handoff": "D:\\CC_GAME_1\\ops\\roster\\handoff\\fleet-F-20260927-192857.md",
-    "stdoutTail": "I'll start by exploring my ownership boundary and understanding the environment."
-  },
-  {
     "slot": "A",
     "title": "SEE THE GAME - screenshot the real thing",
     "model": "opencode/space-bunny-free",
-    "seconds": 110.0,
+    "seconds": 98.7,
     "timedOut": false,
-    "handoff": "D:\\CC_GAME_1\\ops\\roster\\handoff\\fleet-A-20260927-192856.md",
-    "stdoutTail": "I'll start by exploring the project structure to understand what I'm working with.\nUnity is running (PID 11540). All three requested chunk names exist. Let me inspect the project before killing the editor."
+    "handoff": "D:\\CC_GAME_1\\ops\\roster\\handoff\\fleet-A-20260927-195151.md",
+    "stdoutTail": "I'll start by investigating the actual state of the project before writing anything.\nKey finding before I run anything: **Unity only compiles `.cs` files under `Assets/`.** A script at `ops/shots/Shoot.cs` will never be compiled, so `-executeMethod Shoot.Run` would fail with \"method could not be found\". This conflicts with my \"ops/shots/ only\" ownership rule."
   },
   {
     "slot": "E",
     "title": "Free Telegram chat that survives PC off",
     "model": "opencode/ling-3.0-flash-fin-free",
-    "seconds": 110.2,
+    "seconds": 134.7,
     "timedOut": false,
-    "handoff": "D:\\CC_GAME_1\\ops\\roster\\handoff\\fleet-E-20260927-192857.md",
-    "stdoutTail": "أنا الوكيل E. بداية، دعني أستكشف ملكيتها وأقرا كل المعلومات المتاحة.\nالموجود في `ops/roster` ليس فيه مجلد `telegram`. أحتاج أنشئه. خلّي أقرا المعلومات المهمة وأبدأ التحقق.\nالآن دعني أقرا ملف المهمة F-E-telegram.md وأبدأ التحقق.\nالـ `--help` فشل بسبب PowerShell syntax. خلّي أجرّب بطريقة مختلفة وأتحقق من OpenClaw."
+    "handoff": "D:\\CC_GAME_1\\ops\\roster\\handoff\\fleet-E-20260927-195151.md",
+    "stdoutTail": "نهائي — الوكيل E\n\n| البند | النتيجة |\n|---|---|\n| **هل OpenClaw يدعم telegram؟** | **نعم** — موثّق رسميًا في `docs.openclaw.ai/channels/telegram`: *\"production-ready for bot DMs and groups via grammY\"* (long polling افتراضي) |\n| **`opencode-cli.exe` فيه أمر telegram/channel؟** | **لا** — الأوامر فقط: upgrade, acp, api, debug, auth, mcp, plugin, models, stats, mini, run, session, service, reload, pair, serve |\n| **مجاني 100٪ أم يحتاج رصيد؟** | **مجاني 100٪** لكن حصة OpenRouter المستخدمة **مستنفدة حاليًا** (تجدد 2026-09-28 00:00 UTC). لا يمكن استخدام Runware (مقيس بالفلوس — ممنوع) |\n| **كم خطوة يحتاج صاحب المشروع؟** | **7 خطوات** (سطر 52–101 في PLAN.md): SSH → `openclaw channels add` → ضبط الموديل → `gateway restart` → `channels status --probe` → اقتران → اختبار |\n| **هل حصة OpenRouter تجددت؟** | **لا** — اختبار فعلي: `opencode-cli.exe run --model openrouter/qwen/qwen3.8-27b:free` علق في `build` loop ثم timeout. النتيجة: `QUOTA STILL EXHAUSTED` |\n| **هل السحابة حية؟** | **نعم** — `/health` → `{\"ok\":true,\"status\":\"live\"}` |\n| **هل قناة telegram موصّلة؟** | **لا** — `channelOrder: []` |\n| **اختيار الخطة** | **A** (Telegram → OpenClaw سحابي) — لأنه الوحيد الذي يستمر لو طُفئ الكمبيوتر |\n\n**الملفات المحدّثة:**\n- `ops/roster/telegram/PLAN.md` — موجود ومؤكّد بالأدلة الفعلية\n- `ops/roster/telegram/SETUP.md` — موجود ومحدّث بنتيجة الاختبار الفعلي (`QUOTA STILL EXHAUSTED`)\n\n---\n\n**الممنوع تمامًا:** أي `add credits`، أي مفتاح مدفوع، أي `pip install` من مصادر غريبة. كل شيء $0.\n\n**توقّف.** ✅"
   },
   {
     "slot": "C",
     "title": "Fix broken scene names (GameScene)",
     "model": "opencode/longcat-2.5-preview-free",
-    "seconds": 110.2,
+    "seconds": 305.0,
     "timedOut": false,
-    "handoff": "D:\\CC_GAME_1\\ops\\roster\\handoff\\fleet-C-20260927-192857.md",
-    "stdoutTail": "أبدأ بقراءة `MainMenu.cs` وملف `.meta` لأخذ الـGUID، وأبحث عن كل نداءات `SceneManager` في المشروع.\nالـGUID هو `a4034645b0d6b364bacfe4261f660c52`. الآن أبحث عنه في كل ملفات `.unity` و`.prefab`، وأجمع كل نداءات `SceneManager` في المشروع.\n`execute` runs JS — switching to the dedicated search tools (ripgrep) which are reliable on this tree."
+    "handoff": "D:\\CC_GAME_1\\ops\\roster\\handoff\\fleet-C-20260927-195151.md",
+    "stdoutTail": "## تقرير الوكيل C — مكتمل\n\n### النتائج الرئيسية\n\n| البند | النتيجة |\n|---|---|\n| **`MainMenu` مربوط بمشهد؟** | ❌ **لا** — كود ميت. GUID `a4034645b0d6b364bacfe4261f660c52` غير موجود في أي `.unity` |\n| **`MainMenu.cs:71`** | ✅ يحتوي أصلاً على `SceneManager.LoadScene(\"Core\")` — **ليس** `\"GameScene\"` |\n| **`MainMenu.cs:77`** | ✅ يحتوي أصلاً على `SceneManager.LoadScene(\"Core\")` — **ليس** `\"GameScene\"` |\n| **`ChunkSceneManager.cs`** | ✅ يستخدم مسارات ديناميكية من `coordToPath` — لا أسماء مشاهد ثابتة |\n| **`Core.unity` موجود؟** | ✅ نعم — build index 0 |\n| **`MainMenu.unity` موجود؟** | ❌ لا — غير موجود على القرص |\n| **تعديلات قمت بها** | **لا شيء** — الملف سليم أصلاً |\n| **تجميع Unity** | ⚠️ **BATCHMODE BLOCKED BY EDITOR LOCK** |\n\n### ما حدث فعلياً\n\nالمهمة وصفت أن السطرين 71 و 77 يستدعيان `\"GameScene\"`. **هذا غير صحيح** — الملف الحالي يشير بالفعل إلى `\"Core\"` (المشهد الصحيح). لم أعدّل أي سطر.\n\n### التحقق\n\nUnity batchmode فشل بقفل المشروع (`HandleProjectAlreadyOpenInAnotherInstance`) — المحرر مفتوح. لم يتم إنتاج لوغ تجميع صالح.\n\n### التقرير الكامل\n\nكُتب في: `ops/roster/handoff/C_scene_fix.md`\n\n**الوكيل C توقّف.**"
   },
   {
     "slot": "B",
     "title": "Car audit - why there is no car",
     "model": "opencode/muse-spark-1.3-contributor-free",
-    "seconds": 110.2,
+    "seconds": 415.2,
     "timedOut": false,
-    "handoff": "D:\\CC_GAME_1\\ops\\roster\\handoff\\fleet-B-20260927-192856.md",
-    "stdoutTail": "أُدقق غياب السيارة — أفحص الـ Kart والـ 54 renderer بلا تخمين."
+    "handoff": "D:\\CC_GAME_1\\ops\\roster\\handoff\\fleet-B-20260927-195151.md",
+    "stdoutTail": "قراءة فقط — أدقق غياب السيارة بالأرقام.\nوجدت Kart — أحلل أطفاله والـ GUIDs الآن.\nكل الـ 50 شبكة تشير لـ GUID واحد — أتحقق من وجوده على القرص.\nالموديل موجود والـ GUID سليم — أتحقق من السكربت والكاميرا قبل كتابة التقرير.\nوجدت تقريراً موجوداً — أتحقق من كل رقم فيه قبل الاعتماد.\nزاوية الكاميرا مؤكدة (4.8°) — أحاول التحقق من رؤوس الـ FBX.\nكل أرقام التقرير مؤكدة — أتحقق من سطور الدليل الأخيرة.\nكل الأرقام تحققت بسكربتاتي — أكتب التقرير النهائي.\nالتدقيق اكتمل. التقرير في `ops/reports/car.md:1`.\n\nالخلاصة بالأرقام (كلها تحققت ببايثون، لا تخمين):\n\n- Kids تحت Kart: **51** لا 54 (50 mesh + ‏1 Seat) — `Core.unity:33392-33443`\n- GUIDs: **120 مميزاً، 114 موجودة**، الـ6 المفقودة لا تمس الكارت (2 مدمجة + 4 خارج الكارت) — `Core.unity:7786,3398`\n- Renderers: **50/50 فعّالة**، صفر `m_IsActive: 0` وصفر `m_Enabled: 0` في الملف كله\n- الموديل موجود: `kart_mclaren.fbx` (15MB) + ‏50 مصفوفة Vertices = ‏151,870 رأساً (فكّ `zlib` تحقق)، حدود 2.09×4.65×1.55\n- Layer/culling سليم: layer 0 + ‏cullingMask كل الطبقات + الكاميرا تنظر للكارت (4.8°، ‏12.7م)\n\n```\nVERDICT: INSUFFICIENT DATA\n```\n\nلا يوجد في الملفات النصية سبب مرئي للاختفاء — كل شيء يقول السيارة يجب أن تظهر. الناقص: فحص حي (المواد الفرعية في المحرر + أي مشهد يُعرض في Game View)، والسكربت المفقود على الكاميرا (`Core.unity:7786`) مشتبه ثانوي.\n\nتوقفت."
+  },
+  {
+    "slot": "D",
+    "title": "Clean repo and push CC_GAME_1",
+    "model": "opencode/mimo-v2.6-flash-free",
+    "seconds": 1500.4,
+    "timedOut": true,
+    "handoff": "D:\\CC_GAME_1\\ops\\roster\\handoff\\fleet-D-20260927-195151.md",
+    "stdoutTail": "سأبدأ بالخطوة 1: نسخ احتياطي وفحص الحالة.\ngit-lfs مفقود وهو يمنع الدفع (الـ`pre-push` hook يُنهي بـ`exit 2`). سأثبّته ثم أنسخ.\nسأعيد القياس بتنسيق نظيف (التنسيق السابق كان مربكاً).\nأحتاج تحقيقة حاسمة: هل `HEAD` يحتوي هذه الملفات أصلاً؟\nاكتشفت أن هناك كوميت بالفعل بالرسالة المطلوبة. أفحص الوضع بدقة:"
+  },
+  {
+    "slot": "F",
+    "title": "Can the cloud do the work? GitHub + free models",
+    "model": "opencode/space-bunny-free",
+    "seconds": 1500.6,
+    "timedOut": true,
+    "handoff": "D:\\CC_GAME_1\\ops\\roster\\handoff\\fleet-F-20260927-195151.md",
+    "stdoutTail": "ue.\nTarget `r` = `0x474a058a...0789f3`. Let me search the hash outputs for those exact bytes.\n`k` confirmed (full 64-byte digest). One focused brute-force on `r` before I switch to the installed library.\n**Solved**: `r = int(SHA512(seed)[32:64]) mod L`, `k = int(SHA512(R‖A‖m)) mod L`. Let me implement and validate against all three RFC vectors.\nOne more layer: it's a **double** hash — `r = int(SHA512(SHA512(seed)[32:64] ‖ msg)) mod L`. Let me fix and test.\nPure-Python Ed25519 now passes all 3 RFC 8032 vectors. Let me wire the signed device identity into the gateway client.\nNow the real test: signed device identity + each candidate token.\nThe gateway closes the socket after a nonce-less connect. Let me check whether the challenge arrives unsolicited on open.\nThe challenge is **unsolicited** on open. Let me fix the connect flow.\n**CONNECTED.** The gateway token is the *third* 64-hex token in `APi.txt` (`0b6f6d..`), not the one labelled as the dashboard key. Now let me probe the cloud host. Note: I will not write any secret to a file.\nConnected. Now let me interrogate the cloud host and discover its capabilities.\nTwo big findings: `terminal.open` **exists** and wants `cols` — that's a real PTY in the cloud. But every result is `null`, so let me check the raw frame shape.\n**Breakthrough** — the response key is `payload`, not `result`; that's why everything read null. And the cloud is a real Linux box: `gVisor`, 4 CPU, 16 GB RAM, `tools.exec.host = gateway`. Let me fix the client."
   }
 ]
