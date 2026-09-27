@@ -1,0 +1,12 @@
+# ── SECRETS: never commit these ────────────────────────────────────────────
+# Device identities contain an Ed25519 PRIVATE KEY. Committing one to a public
+# repo hands anyone the ability to impersonate that device to the gateway.
+device_identity*.json
+gateway_credential.json
+config_full.json
+
+# Working scratch
+_clonetest/
+__pycache__/
+_bundles/
+*.pyc

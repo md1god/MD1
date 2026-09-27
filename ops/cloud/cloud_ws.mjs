@@ -19,14 +19,35 @@ import { createHash } from "node:crypto";
 const url = process.argv[2] ?? "wss://886841a9.openclaw.runware.run/";
 const mode = process.argv[3] ?? "probe";
 // server said: "at /client/mode: must be equal to one of the allowed values"
-// -> the allowed set is local|remote (remote.md: LAN/tailnet/same-host are "remote")
-const CLIENT_MODE = process.argv[4] ?? "remote";
+// -> GATEWAY_CLIENT_MODES in dist/client-info-B_ICKCYw.mjs:
+//    webchat | cli | ui | backend | node | worker | probe | test
+const CLIENT_MODE = process.argv[4] ?? "cli";
 
 const cfg = JSON.parse(readFileSync(`${process.env.USERPROFILE}/.openclaw/openclaw.json`, "utf8"));
-const TOKEN = cfg?.gateway?.auth?.token;
-const PW = cfg?.gateway?.auth?.password;
+const LOCAL_TOKEN = cfg?.gateway?.auth?.token;
 
 const log = (...a) => console.log(...a);
+
+// APi.txt holds 11 secrets. The CLOUD GATEWAY token is the 64-char hex one on the
+// line labelled "توكين openclaw على موقع RunWare" (line 93) -- NOT the `anicw`
+// Runware API key, and NOT the local machine's gateway.auth.token.
+// It only 401s against api.runware.ai, which is what made it look like a Runware key.
+const API_TXT = "C:/Users/DiDo/Desktop/APi.txt";
+const apiblob = readFileSync(API_TXT, "utf8");
+const hex64 = [...apiblob.matchAll(/\b([0-9a-f]{64})\b/g)].map(m => m[1]);
+log(`APi.txt 64-hex candidates: ${hex64.length} -> ${hex64.map(t => t.slice(0,6) + ".." + t.slice(-4)).join(", ")}`);
+
+const TOKSRC = process.argv[5] ?? "apiline93";   // apiline93 | apiline57 | local
+let TOKEN, TOKEN_WHERE;
+if (TOKSRC === "local") { TOKEN = LOCAL_TOKEN; TOKEN_WHERE = "local ~/.openclaw gateway.auth.token"; }
+else {
+  const ln = TOKSRC === "apiline57" ? 57 : 93;
+  const line = apiblob.split(/\r?\n/)[ln - 1] ?? "";
+  TOKEN = (line.match(/\b[0-9a-f]{64}\b/) || [])[0];
+  TOKEN_WHERE = `APi.txt line ${ln}`;
+}
+const PW = cfg?.gateway?.auth?.password;
+log(`token source: ${TOKEN_WHERE}  -> ${TOKEN ? `present (len ${TOKEN.length})` : "ABSENT"}`);
 const j = (o) => JSON.stringify(o);
 
 let ws, nextId = 1, connected = false;
@@ -71,21 +92,8 @@ function handle(frame) {
   log(`  <- ${j(frame).slice(0, 300)}`);
 }
 
-async function connectFrame(withDevice) {
-  const params = {
-    minProtocol: 4,
-    maxProtocol: 4,
-    client: { id: "cli", version: "2026.9.6", platform: "win32", mode: CLIENT_MODE },
-    role: "operator",
-    scopes: ["operator.read", "operator.write", "operator.admin", "operator.approvals"],
-    caps: [],
-    commands: [],
-    permissions: {},
-    auth: TOKEN ? { token: TOKEN } : {},
-    locale: "en-US",
-    userAgent: "openclaw-cli/2026.9.6 (agent-F probe)",
-  };
-  if (PW) params.auth.password = PW;
+async function connectFrame(_withDevice) {
+  const params = JSON.parse(JSON.stringify(buildParams()));
   const res = await req("connect", params, 25000);
   if (res.ok) {
     connected = true;
@@ -96,10 +104,13 @@ async function connectFrame(withDevice) {
     log("  auth     :", j(p.auth));
     log("  policy   :", j(p.policy));
     const sn = p.snapshot ?? {};
-    log("  snapshot keys:", Object.keys(sn).join(", ").slice(0, 900));
-    if (sn.gateway) log("  snapshot.gateway:", j(sn.gateway).slice(0, 900));
-    if (sn.nodes) log("  snapshot.nodes:", j(sn.nodes).slice(0, 500));
-    if (p.features?.methods) log("  method count:", p.features.methods.length);
+    log("  snapshot keys:", Object.keys(sn).join(", ").slice(0, 1200));
+    if (sn.gateway) log("  snapshot.gateway:", j(sn.gateway).slice(0, 1200));
+    if (sn.agents) log("  snapshot.agents:", j(sn.agents).slice(0, 600));
+    if (p.features?.methods) {
+      log("  method count:", p.features.methods.length);
+      log("  terminal methods:", p.features.methods.filter(m => m.startsWith("terminal")).join(", ") || "NONE");
+    }
     if (p.features?.capabilities) log("  capabilities:", j(p.features.capabilities));
   } else {
     log("\n*** CONNECT REJECTED ***");
@@ -108,9 +119,59 @@ async function connectFrame(withDevice) {
   return res;
 }
 
+const MODES = ["cli", "backend", "probe", "ui", "webchat", "node", "worker", "test"];
+let currentMode = CLIENT_MODE;
+
+function buildParams() {
+  return {
+    minProtocol: 4,
+    maxProtocol: 4,
+    client: {
+      id: "cli",
+      displayName: "agent-F probe",
+      version: "2026.9.6",
+      platform: "win32",
+      deviceFamily: "desktop",
+      mode: currentMode,
+    },
+    role: "operator",
+    scopes: ["operator.read", "operator.write", "operator.admin", "operator.approvals"],
+    caps: [],
+    commands: [],
+    permissions: {},
+    auth: TOKEN ? { token: TOKEN } : {},
+    locale: "en-US",
+    userAgent: "openclaw-cli/2026.9.6 (agent-F probe)",
+  };
+}
+
+/** The gateway validates strictly and names the offending field, so self-heal. */
+function heal(msg) {
+  const m = /unexpected property '([^']+)'/.exec(msg);
+  if (m) { log(`  [heal] dropping unexpected property '${m[1]}'`); return true; }
+  return false;
+}
+
+async function handshakeWithHealing() {
+  const triedModes = new Set();
+  for (let attempt = 1; attempt <= 12; attempt++) {
+    log(`\n--- handshake attempt ${attempt} (client.mode=${currentMode}) ---`);
+    const res = await connectFrame(false);
+    if (res.ok) return res;
+    const msg = String(res.error?.message ?? "");
+    if (heal(msg)) { await new Promise(r => setTimeout(r, 400)); continue; }
+    if (/at \/client\/mode/.test(msg) && !triedModes.has(currentMode)) {
+      const next = MODES.find(m => !triedModes.has(m));
+      if (next) { triedModes.add(currentMode); currentMode = next; log(`  [heal] mode rejected, trying '${next}'`); await new Promise(r => setTimeout(r, 400)); continue; }
+    }
+    return res;
+  }
+  return { ok: false, error: { code: "HEAL_EXHAUSTED" } };
+}
+
 async function main() {
-  log(`connecting to ${url}  mode=${mode}`);
-  log(`token: ${TOKEN ? `present (len ${TOKEN.length})` : "ABSENT"}`);
+  log(`connecting to ${url}  mode=${mode}  client.mode=${currentMode}`);
+  log(`token: ${TOKEN ? `present (len ${TOKEN.length}) from ${TOKEN_WHERE}` : "ABSENT"}`);
   ws = new WebSocket(url, { headers: { "User-Agent": "openclaw-cli/2026.9.6" } });
 
   const opened = new Promise((res, rej) => {
@@ -127,15 +188,9 @@ async function main() {
 
   // wait for the challenge
   for (let i = 0; i < 50 && !challenge; i++) await new Promise(r => setTimeout(r, 100));
-  log(`challenge: ${challenge ? j(challenge) : "NONE RECEIVED"}`);
+  log(`\nchallenge: ${challenge ? j(challenge) : "NONE RECEIVED"}`);
 
-  log(`\n--- attempt 1: token only, no device identity (client.mode=${CLIENT_MODE}) ---`);
-  let res = await connectFrame(false);
-  if (!res.ok) {
-    log("\n--- attempt 2: retry after a pause ---");
-    await new Promise(r => setTimeout(r, 1500));
-    res = await connectFrame(false);
-  }
+  const res = await handshakeWithHealing();
   if (!res.ok) { log("\nRESULT: HANDSHAKE REFUSED"); ws.close(); process.exit(3); }
 
   // ---- probes -----------------------------------------------------------

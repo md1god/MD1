@@ -1,0 +1,20 @@
+{
+  "machineName": "openclaw-886841a9-0",
+  "hostname": "openclaw-886841a9-0",
+  "platform": "linux",
+  "release": "4.19.0-gvisor",
+  "arch": "x64",
+  "osLabel": "Linux 4.19.0-gvisor",
+  "lanAddress": "10.20.62.19",
+  "port": 18789,
+  "nodeVersion": "v24.16.0",
+  "pid": 2,
+  "uptimeMs": 104323573,
+  "cpuCount": 4,
+  "cpuModel": "unknown",
+  "memoryTotalBytes": 16773120000,
+  "memoryFreeBytes": 15680000000,
+  "diskTotalBytes": 10464022528,
+  "diskAvailableBytes": 9522900992,
+  "diskPath": "/home/openclaw/.openclaw"
+}

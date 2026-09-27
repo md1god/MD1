@@ -1,0 +1,304 @@
+// Agent #1 - live look at the game.
+// Batchmode has no Game View, so every frame is rendered manually into a
+// RenderTexture. Renders happen in edit mode (what the camera sees) and again
+// after 150 play-mode frames (whether the car moved).
+//
+// Usage:
+//   Unity.exe -batchmode -quit -projectPath D:\CC_GAME_1 \
+//             -executeMethod CCGameShot.Run -logFile <log>
+//
+// Nothing here is game code. It only reads and writes ops/shots/.
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.Rendering;
+
+public static class CCGameShot
+{
+    const string OUT = @"D:\CC_GAME_1\ops\shots";
+    const string SCENE = "Assets/Scenes/Core/Core.unity";
+    const int W = 1600;
+    const int H = 900;
+
+    static readonly List<string> Log = new List<string>();
+    static int _frame;
+    static Vector3 _kartStart;
+    static bool _captured;
+
+    static void Say(string s)
+    {
+        Log.Add(s);
+        Debug.Log("[SHOT] " + s);
+    }
+
+    public static void Run()
+    {
+        Directory.CreateDirectory(OUT);
+        try
+        {
+            EditorSceneManager.OpenScene(SCENE, OpenSceneMode.Single);
+            Say("opened " + SCENE);
+
+            // Report the whole layout before rendering anything.
+            ReportObjects();
+            ReportCameraGeometry();
+
+            // 1. what the scene's own camera sees
+            var cam = Camera.main ?? Object.FindFirstObjectByType<Camera>();
+            if (cam == null) { Say("FAIL: no camera in scene"); return; }
+            Shot(cam, "01_scene_cam.png");
+            Shot(SceneViewFromAbove(), "02_overhead.png");
+            Shot(AimedAtKart(), "03_look_at_kart.png");
+
+            // 2. now actually play it
+            Say("entering play mode");
+            EditorApplication.update += OnUpdate;
+            EditorApplication.EnterPlaymode();
+        }
+        catch (Exception e)
+        {
+            Say("EXCEPTION " + e.GetType().Name + ": " + e.Message);
+            Finish();
+        }
+    }
+
+    static void OnUpdate()
+    {
+        _frame++;
+        if (!EditorApplication.isPlaying && _frame > 1)
+        {
+            EditorApplication.update -= OnUpdate;
+            Say("left play mode at frame " + _frame);
+            Finish();
+            return;
+        }
+        if (!EditorApplication.isPlaying) return;
+
+        var kart = Find("Kart") ?? Find("Player");
+        if (kart != null && _frame == 1)
+        {
+            _kartStart = kart.transform.position;
+            Say("frame 1   kart pos " + _kartStart.ToString("F2"));
+            Shot(Camera.main, "04_play_f001.png");
+        }
+        if (_frame == 30 && kart != null)
+            Say("frame 30  kart pos " + kart.transform.position.ToString("F2") +
+                "  moved " + (kart.transform.position - _kartStart).magnitude.ToString("F3") + " m");
+        if (_frame == 150)
+        {
+            Say("frame 150 kart pos " + (kart ? kart.transform.position.ToString("F2") : "GONE"));
+            Say("TOTAL MOVE " + (kart ? (kart.transform.position - _kartStart).magnitude.ToString("F3") : "n/a") + " m");
+            Shot(Camera.main, "05_play_f150.png");
+            _captured = true;
+            EditorApplication.ExitPlaymode();
+        }
+        if (_frame > 400)
+        {
+            Say("frame cap hit, captured=" + _captured);
+            EditorApplication.update -= OnUpdate;
+            EditorApplication.ExitPlaymode();
+        }
+    }
+
+    static void Finish()
+    {
+        try
+        {
+            File.WriteAllLines(Path.Combine(OUT, "report.txt"), Log);
+            foreach (var f in Directory.GetFiles(OUT, "*.png"))
+                Say("png " + Path.GetFileName(f) + " " + new FileInfo(f).Length + " bytes");
+            File.WriteAllLines(Path.Combine(OUT, "report.txt"), Log);
+        }
+        catch (Exception e) { Debug.Log("[SHOT] write fail " + e.Message); }
+        Debug.Log("[SHOT] DONE");
+        if (Application.isBatchMode) EditorApplication.Exit(0);
+    }
+
+    // ---------- reporting ----------
+
+    static GameObject Find(string n)
+    {
+        foreach (var g in UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None))
+            if (g.name == n) return g;
+        return null;
+    }
+
+    static void ReportObjects()
+    {
+        var all = UnityEngine.Object.FindObjectsByType<GameObject>(FindObjectsSortMode.None);
+        Say("GAMEOBJECTS " + all.Length);
+        int rend = 0, activeRend = 0;
+        foreach (var r in UnityEngine.Object.FindObjectsByType<MeshRenderer>(FindObjectsSortMode.None))
+        {
+            rend++;
+            if (r.enabled && r.gameObject.activeInHierarchy) activeRend++;
+        }
+        Say("MESHRENDERERS total=" + rend + " visible=" + activeRend);
+
+        foreach (var n in new[] { "Kart", "Seat", "Player", "Main Camera", "Directional Light" })
+        {
+            var g = Find(n);
+            if (g == null) { Say("OBJECT " + n + " : MISSING"); continue; }
+            var kids = g.transform.childCount;
+            var rb = g.GetComponent<Rigidbody>();
+            var col = g.GetComponent<Collider>();
+            Say("OBJECT " + n + " pos=" + g.transform.position.ToString("F2") +
+                " rot=" + g.transform.eulerAngles.ToString("F0") +
+                " scale=" + g.transform.lossyScale.ToString("F2") +
+                " active=" + g.activeSelf + " kids=" + kids +
+                " rigidbody=" + (rb != null) + " collider=" + (col != null) +
+                " layer=" + g.layer +
+                " scripts=[" + string.Join(",", g.GetComponents<Component>()
+                    .Select(c => c == null ? "MISSING" : c.GetType().Name)) + "]");
+        }
+
+        // Anything sitting near the kart, and anything big that could hide it.
+        var kart = Find("Kart");
+        if (kart == null) return;
+        var cols = UnityEngine.Object.FindObjectsByType<Collider>(FindObjectsSortMode.None);
+        int hits = 0;
+        foreach (var c in cols)
+        {
+            var p = c.ClosestPoint(kart.transform.position);
+            float d = Vector3.Distance(p, kart.transform.position);
+            if (d < 3f)
+            {
+                hits++;
+                if (hits <= 12)
+                    Say("  NEAR-KART collider " + c.gameObject.name + " (" + c.GetType().Name +
+                        ") d=" + d.ToString("F2") + " centre=" + c.bounds.center.ToString("F1") +
+                        " size=" + c.bounds.size.ToString("F1"));
+            }
+        }
+        Say("  colliders within 3m of kart: " + hits + " of " + cols.Length);
+    }
+
+    static void ReportCameraGeometry()
+    {
+        var cam = Camera.main;
+        if (cam == null) { Say("NO Camera.main"); return; }
+        var kart = Find("Kart") ?? Find("Player");
+        Say("CAMERA pos=" + cam.transform.position.ToString("F2") +
+            " euler=" + cam.transform.eulerAngles.ToString("F1") +
+            " fov=" + cam.fieldOfView + " far=" + cam.farClipPlane +
+            " cullingMask=" + cam.cullingMask);
+        if (kart != null)
+        {
+            var d = kart.transform.position - cam.transform.position;
+            float dist = d.magnitude;
+            var v = cam.transform.InverseTransformDirection(d);
+            Say("CAMERA->KART dist=" + dist.ToString("F2") +
+                " localDir=" + v.ToString("F2") +
+                " viewport=" + cam.WorldToViewportPoint(kart.transform.position).ToString("F2"));
+            // What is in the way?
+            var hits = Physics.RaycastAll(cam.transform.position, d.normalized, dist);
+            Say("RAYCAST camera->kart hits=" + hits.Length);
+            foreach (var h in hits)
+                Say("  blocked by " + h.collider.gameObject.name + " at " + h.distance.ToString("F2") + " m");
+            var rend = kart.GetComponentInChildren<Renderer>();
+            Say("KART renderer bounds " + (rend ? rend.bounds.ToString() : "NONE") +
+                " | center " + (rend ? rend.bounds.center.ToString("F2") : "-") +
+                " | visible=" + (rend ? rend.isVisible.ToString() : "-"));
+        }
+    }
+
+    // ---------- cameras ----------
+
+    static Camera Make(string name, Vector3 pos, Vector3 look, float fov)
+    {
+        var go = new GameObject("SHOTCAM_" + name);
+        var c = go.AddComponent<Camera>();
+        c.fieldOfView = fov;
+        c.nearClipPlane = 0.1f;
+        c.farClipPlane = 4000f;
+        c.cullingMask = ~0;
+        go.transform.position = pos;
+        go.transform.LookAt(look);
+        return c;
+    }
+
+    static Camera SceneViewFromAbove()
+    {
+        // frame every renderer we can find, from high above
+        var rs = UnityEngine.Object.FindObjectsByType<Renderer>(FindObjectsSortMode.None);
+        if (rs.Length == 0) return Make("above", new Vector3(0, 120, -1), Vector3.zero, 60);
+        Bounds b = rs[0].bounds;
+        foreach (var r in rs) b.Encapsulate(r.bounds);
+        var c = b.center;
+        float rad = Mathf.Max(b.extents.magnitude, 5f);
+        return Make("above", c + new Vector3(0, rad * 1.4f, -rad * 0.5f), c, 60);
+    }
+
+    static Camera AimedAtKart()
+    {
+        var kart = Find("Kart") ?? Find("Player");
+        var c = kart ? kart.transform.position : Vector3.zero;
+        return Make("kart", c + new Vector3(6, 3, -6), c, 55);
+    }
+
+    // ---------- rendering ----------
+
+    static void Shot(Camera cam, string file)
+    {
+        try
+        {
+            var rt = new RenderTexture(W, H, 24, RenderTextureFormat.ARGB32);
+            rt.Create();
+            var prevT = cam.targetTexture;
+            var prevA = cam.allowHDR;
+            cam.targetTexture = rt;
+            cam.allowHDR = false;
+
+            bool ok = false;
+            // URP 17+ prefers an explicit render request; Camera.Render still works.
+            var m = typeof(RenderPipeline).GetMethod("SubmitRenderRequest",
+                new[] { typeof(RenderPipeline), typeof(Camera), typeof(RenderRequest) });
+            if (m != null)
+            {
+                try { ok = (bool)m.Invoke(null, new object[] { null, cam, MakeUrpRequest(rt) }); }
+                catch { ok = false; }
+            }
+            if (!ok) { try { cam.Render(); ok = true; } catch (Exception e) { Say("render fail " + e.Message); } }
+
+            var prev = RenderTexture.active;
+            RenderTexture.active = rt;
+            var tex = new Texture2D(W, H, TextureFormat.RGB24, false);
+            tex.ReadPixels(new Rect(0, 0, W, H), 0, 0);
+            tex.Apply();
+            RenderTexture.active = prev;
+
+            var bytes = tex.EncodeToPNG();
+            File.WriteAllBytes(Path.Combine(OUT, file), bytes);
+
+            // crude "is anything actually in this image" check
+            var px = tex.GetPixels32();
+            var uniq = new HashSet<uint>();
+            for (int i = 0; i < px.Length; i += 997)
+                uniq.Add(((uint)px[i].r << 16) | ((uint)px[i].g << 8) | px[i].b);
+            Say("SHOT " + file + " ok=" + ok + " bytes=" + bytes.Length +
+                " distinctColours=" + uniq.Count + " (1 = blank)");
+
+            cam.targetTexture = prevT;
+            cam.allowHDR = prevA;
+            UnityEngine.Object.DestroyImmediate(tex);
+            rt.Release(); UnityEngine.Object.DestroyImmediate(rt);
+        }
+        catch (Exception e) { Say("SHOT " + file + " EXCEPTION " + e.GetType().Name + ": " + e.Message); }
+    }
+
+    static object MakeUrpRequest(RenderTexture rt)
+    {
+        // build a UniversalRenderPipeline.SingleCameraRequest without a hard reference
+        var t = Type.GetType("UnityEngine.Rendering.Universal.UniversalRenderPipeline+SingleCameraRequest, Unity.RenderPipelines.Universal.Runtime");
+        if (t == null) return null;
+        var req = ScriptableObject.CreateInstance(t);
+        var f = t.GetField("destination");
+        if (f != null) f.SetValue(req, rt);
+        return req;
+    }
+}

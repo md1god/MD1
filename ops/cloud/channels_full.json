@@ -1,0 +1,20 @@
+{
+  "ts": 1790535688851,
+  "channelOrder": [],
+  "channelLabels": {},
+  "channelDetailLabels": {},
+  "channelSystemImages": {},
+  "channelMeta": [],
+  "eventLoop": {
+    "degraded": false,
+    "reasons": [],
+    "intervalMs": 1530,
+    "delayP99Ms": 79.6,
+    "delayMaxMs": 153,
+    "utilization": 0.219,
+    "cpuCoreRatio": 0.261
+  },
+  "channels": {},
+  "channelAccounts": {},
+  "channelDefaultAccountId": {}
+}

@@ -1,0 +1,30 @@
+{
+  "url": "wss://886841a9.openclaw.runware.run/",
+  "tokenSource": "apiline93",
+  "deviceId": "42c370262879f81fffa8a7e181d9609800c8b48fd32f6c5f389d808e8a7860f2",
+  "steps": [
+    {
+      "step": "connect",
+      "ok": false,
+      "error": {
+        "code": "NOT_PAIRED",
+        "message": "pairing required: device is not approved yet",
+        "details": {
+          "code": "PAIRING_REQUIRED",
+          "reason": "not-paired",
+          "requestId": "bdd17fc8-21f6-4180-a223-8b2ba2392093",
+          "remediationHint": "Approve this device from the pending pairing requests.",
+          "deviceId": "42c370262879f81fffa8a7e181d9609800c8b48fd32f6c5f389d808e8a7860f2",
+          "requestedRole": "operator",
+          "requestedScopes": [
+            "operator.read",
+            "operator.write",
+            "operator.admin",
+            "operator.approvals"
+          ]
+        }
+      }
+    }
+  ],
+  "verdict": "REJECTED"
+}
