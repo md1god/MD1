@@ -9,6 +9,11 @@ public class FollowCam : MonoBehaviour
 
     void LateUpdate()
     {
+        if (!target)
+        {
+            GameObject kart = GameObject.Find("Kart");
+            if (kart) target = kart.transform;
+        }
         if (!target) return;
         Vector3 want = target.position + target.rotation * offset;
         transform.position = Vector3.Lerp(transform.position, want, speed * Time.deltaTime);

@@ -1,31 +1,17 @@
-// Agent #1 - the actual acceptance test for this project: does the car drive?
+// Agent #1 - verification probe for the owner's complaints:
+//   (1) pressing Play showed only sky, no car, no camera
+//   (2) the W key did not drive the car
 //
-// Everything the project is scoped to is in this one question. Assets are placed
-// (report2.txt: World 764 renderers, City 685, Kart 50, Ground 900x900, URP
-// bound to PC_RPAsset, real GPU, three renders with real detail). What has never
-// been proven is the driving, because every previous attempt used -batchmode,
-// which has no graphics device and returned a flat sky frame.
+// v2: adds a DRIVE phase (inject W through the Input System exactly like
+// CCDriveTest.cs, which compiles and ran) so one run proves BOTH:
+//   - what the first play frame actually shows (rays + capture)
+//   - whether the car drives with W in the CURRENT compiled state
 //
-// The mechanism that made it work, and that this file relies on: a
-// [InitializeOnLoad] editor script in the Editor that is ALREADY open. Editing
-// the file forces a recompile (Ctrl+R), and the static constructor then runs
-// inside the live Editor, which has an Intel HD 4600 and a real swapchain.
-// RenderPipeline.SubmitRenderRequest is the URP-supported way to render a camera
-// to a texture; Camera.Render() is the legacy path and is not correct for SRP.
-//
-// Input is injected directly through the Input System rather than by faking
-// keystrokes, so the test does not depend on which panel has focus. SimpleCar
-// reads Keyboard.current every Update (SimpleCar.cs:28) and returns early if it
-// is null (SimpleCar.cs:29), so a null keyboard is itself a finding worth logging.
-//
-// Play mode triggers a domain reload, which re-runs every [InitializeOnLoad]
-// constructor including this one. Phase is kept in SessionState so the test
-// survives that reload instead of restarting.
+// [InitializeOnLoad] + SessionState pattern, proven in CCDriveTest.cs.
 
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -34,21 +20,19 @@ using UnityEngine.InputSystem.LowLevel;
 using UnityEngine.Rendering;
 
 [InitializeOnLoad]
-public static class CCDriveTest
+public static class CCVerify
 {
     const string SCENE = "Assets/Scenes/Core/Core.unity";
     const string OUT = @"D:\CC_GAME_1\ops\shots\real";
-    const string PHASE = "CCDriveTest.phase";
-    const string DONE = "CCDriveTest.done";
+    const string PHASE = "CCVerify2.phase";
+    const string DONE = "CCVerify2.done";
 
     static int _ticks;
     static readonly List<string> Log = new List<string>();
-    static void Say(string s) { Log.Add(s); Debug.Log("[DRIVE] " + s); }
+    static void Say(string s) { Log.Add(s); Debug.Log("[VERIFY] " + s); }
 
-    static CCDriveTest()
+    static CCVerify()
     {
-        // superseded by CCVerify (visibility + W-drive). Never auto-run again.
-        SessionState.SetBool(DONE, true);
         EditorApplication.update += Pump;
     }
 
@@ -71,30 +55,36 @@ public static class CCDriveTest
                     SessionState.SetInt(PHASE, 1);
                     break;
 
-                case 1:   // waiting for play mode to come up
+                case 1:   // first tick inside play mode = the owner's first frame
                     if (!EditorApplication.isPlaying) return;
                     SessionState.SetInt(PHASE, 2);
+                    MeasureCamera("EARLY");
+                    var c0 = Camera.main;
+                    if (c0 != null) Shoot(c0, "06_verify_first_frame.png");
                     break;
 
-                case 2:
+                case 2:   // converged state
                     if (_ticks > 90)
                     {
-                        BeginDrive();
+                        MeasureCamera("LATE");
+                        var c1 = Camera.main;
+                        if (c1 != null) Shoot(c1, "07_verify_playmode.png");
                         SessionState.SetInt(PHASE, 3);
                     }
                     break;
 
-                case 3:
-                    if (_ticks > 300)
+                case 3:   // now inject W and drive for ~210 frames
+                    if (_ticks > 110)
                     {
-                        EndDrive();
+                        BeginDrive();
                         SessionState.SetInt(PHASE, 4);
                     }
                     break;
 
                 case 4:
-                    if (_ticks > 360)
+                    if (_ticks > 330)
                     {
+                        EndDrive();
                         Finish();
                         SessionState.SetInt(PHASE, 5);
                     }
@@ -104,44 +94,66 @@ public static class CCDriveTest
         catch (Exception e) { Say("FATAL at phase " + phase + ": " + e.GetType().Name + " " + e.Message); Finish(); SessionState.SetInt(PHASE, 5); }
     }
 
+    static void Start()
+    {
+        Say("=== CC VERIFY ===");
+        EditorSceneManager.OpenScene(SCENE, OpenSceneMode.Single);
+        Say("scene loaded from disk (camera fix applied), entering play mode");
+        EditorApplication.EnterPlaymode();
+    }
+
     static Vector3 _before;
     static GameObject _kart;
 
-    static void Start()
+    static void MeasureCamera(string tag)
     {
-        Say("=== DRIVE TEST ===");
-        EditorSceneManager.OpenScene(SCENE, OpenSceneMode.Single);
-        Say("scene loaded, entering play mode");
-        EditorApplication.EnterPlaymode();
+        _kart = GameObject.Find("Kart");
+        Say(tag + " Kart = " + (_kart ? _kart.transform.position.ToString("F2") : "*** MISSING ***"));
+
+        var cam = Camera.main;
+        if (cam == null) { Say(tag + " Camera.main = NONE (that alone is the sky-image cause: no camera)"); return; }
+        Say(tag + " camera pos=" + cam.transform.position.ToString("F2") +
+            " euler=" + cam.transform.eulerAngles.ToString("F1") +
+            "  fwd=" + cam.transform.forward.ToString("F2"));
+
+        var fc = UnityEngine.Object.FindObjectOfType<FollowCam>();
+        Say(tag + " FollowCam = " + (fc ? "present target=" + (fc.target ? fc.target.name : "*** NULL ***") : "*** MISSING ***"));
+
+        var r = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+        if (Physics.Raycast(r, out hit, 300f))
+            Say(tag + " CENTER-RAY -> " + hit.collider.gameObject.name + " dist=" + hit.distance.ToString("F1"));
+        else
+            Say(tag + " CENTER-RAY -> NOTHING (>=300m)  <= unbroken sky");
+
+        var r2 = cam.ViewportPointToRay(new Vector3(0.5f, 0.42f, 0));
+        if (Physics.Raycast(r2, out hit, 300f))
+            Say(tag + " CAR-BAND-RAY -> " + hit.collider.gameObject.name + " dist=" + hit.distance.ToString("F1"));
+        else
+            Say(tag + " CAR-BAND-RAY -> NOTHING");
+
+        var rd = new Ray(cam.transform.position, Vector3.down);
+        if (Physics.Raycast(rd, out hit, 200f))
+            Say(tag + " DOWN-RAY -> " + hit.collider.gameObject.name + " dist=" + hit.distance.ToString("F1"));
+        else
+            Say(tag + " DOWN-RAY -> NOTHING (camera above no ground)");
     }
 
     static void BeginDrive()
     {
-        Say("--- play mode running, frame ~90 ---");
-        _kart = GameObject.Find("Kart");
-        if (_kart == null) { Say("*** no Kart in play mode ***"); return; }
-        var sc = _kart.GetComponent<SimpleCar>();
-        Say("SimpleCar = " + (sc ? "attached" : "*** MISSING ***") +
-            (sc ? "  speed=" + sc.speed + " turn=" + sc.turn + " driveDirect=" + sc.driveDirect : ""));
-        _before = _kart.transform.position;
-        Say("kart BEFORE  pos=" + _before.ToString("F3") + " euler=" + _kart.transform.eulerAngles.ToString("F1"));
-
+        Say("--- DRIVE phase: injecting W ---");
         var kb = Keyboard.current;
-        if (kb == null) { Say("*** Keyboard.current is NULL - SimpleCar.cs:29 would return every frame ***"); return; }
-        Say("Keyboard.current = " + kb.displayName + "  -> injecting W (QueueStateEvent)");
-        // isPressed is read-only on the control; the correct way to inject input is a
-        // queued KeyboardState event through the LowLevel API.
+        if (kb == null) { Say("*** Keyboard.current is NULL - W would never drive ***"); return; }
         var press = new KeyboardState();
         press.Set(Key.W, true);
         InputSystem.QueueStateEvent(kb, press);
-
-        var cam = Camera.main;
-        Say("Camera.main = " + (cam ? cam.name + " at " + cam.transform.position.ToString("F2") : "NONE"));
+        if (_kart != null) _before = _kart.transform.position;
+        Say("kart BEFORE drive pos=" + (_kart ? _kart.transform.position.ToString("F3") : "?") +
+            "  (expect ~70 m after ~210 frames at speed 20)");
     }
 
     static void EndDrive()
     {
-        Say("--- frame ~300, releasing W ---");
         var kb = Keyboard.current;
         if (kb != null)
         {
@@ -151,28 +163,18 @@ public static class CCDriveTest
         }
         if (_kart == null) return;
         var after = _kart.transform.position;
-        Say("kart AFTER   pos=" + after.ToString("F3") + " euler=" + _kart.transform.eulerAngles.ToString("F1"));
         float d = Vector3.Distance(_before, after);
-        Say("*** MOVED " + d.ToString("F3") + " m in ~210 frames *** " +
-            (d > 1f ? "=> THE CAR DRIVES" : "=> THE CAR DID NOT MOVE"));
-        if (_kart.GetComponent<SimpleCar>() != null)
-            Say("    (SimpleCar moves with transform.Translate at SimpleCar.cs:50, " +
-                sc_speed().ToString("F1") + " m/s, so ~" + (sc_speed() * 210f / 60f).ToString("F1") + " m expected) ");
-
+        Say("kart AFTER  pos=" + after.ToString("F3"));
+        Say("*** W-DRIVE MOVED " + d.ToString("F3") + " m in ~210 frames *** " +
+            (d > 1f ? "=> W DRIVES THE CAR" : "=> W DID NOT MOVE THE CAR"));
         var cam = Camera.main;
         if (cam != null)
         {
-            Say("camera in play mode pos=" + cam.transform.position.ToString("F2") +
+            Say("camera after drive pos=" + cam.transform.position.ToString("F2") +
                 " euler=" + cam.transform.eulerAngles.ToString("F1") +
-                "   <-- FollowCam should be trailing the car");
-            Shoot(cam, "05_playmode_after_driving.png");
+                "   <-- FollowCam trailing = true if z moved");
+            Shoot(cam, "08_verify_driving.png");
         }
-    }
-
-    static float sc_speed()
-    {
-        var sc = _kart != null ? _kart.GetComponent<SimpleCar>() : null;
-        return sc ? sc.speed : 0f;
     }
 
     static void Finish()
@@ -181,10 +183,10 @@ public static class CCDriveTest
         try
         {
             Directory.CreateDirectory(OUT);
-            File.WriteAllLines(Path.Combine(OUT, "drive.txt"), Log);
+            File.WriteAllLines(Path.Combine(OUT, "verify.txt"), Log);
         }
         catch { }
-        Say("exiting play mode");
+        Say("verification done, exiting play mode");
         SessionState.SetBool(DONE, true);
         if (EditorApplication.isPlaying) EditorApplication.ExitPlaymode();
     }
