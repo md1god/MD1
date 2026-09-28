@@ -97,4 +97,4 @@ W حرّك السيارة 160.380 م، الكاميرا تتبع. الأدلة: 
 | 2 | Space Bunny | FollowCam self-heal | ☑ مكتمل | FollowCam.cs:12-16 + Roslyn exit 0 | 2026-09-28 |
 | 4 | Ling Flash | جرد التوزيع | ☑ مكتمل | 121/121 موجود — 100% | 2026-09-28 |
 | 1 | Big Pickle | كاميرا "السماء فقط" + إثبات W | ☑ مكتمل | verify.txt: W-DRIVE MOVED 160.380 m | 2026-09-28 |
-| 5 | Longcat | الحكم النهائي | ⏳ قيد التشغيل | T6-verify.md | 2026-09-28 |
+| 5 | Longcat | الحكم النهائي | ☑ مكتمل — PASS | verify-today.md + verify_build_scenes EXIT=0 | 2026-09-28 |
