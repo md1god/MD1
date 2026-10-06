@@ -1,9 +1,8 @@
 name: Build WebGL
 
 on:
+  # لا نشغّل Unity تلقائياً على كل push؛ يحتاج ترخيصاً وأسراراً مهيأة.
   workflow_dispatch: {}
-  push:
-    branches: [main]
 
 jobs:
   buildWebGL:
@@ -14,13 +13,31 @@ jobs:
         with:
           lfs: true
 
-      - uses: actions/cache@v4
+      - name: Check Unity license configuration
+        id: license
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        run: |
+          if [ -z "$UNITY_LICENSE" ] || [ -z "$UNITY_EMAIL" ] || [ -z "$UNITY_PASSWORD" ]; then
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+            echo "⚠️ Unity build skipped: configure UNITY_LICENSE, UNITY_EMAIL and UNITY_PASSWORD first."
+          else
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Cache Unity Library
+        if: steps.license.outputs.configured == 'true'
+        uses: actions/cache@v4
         with:
           path: Library
           key: Library-WebGL
           restore-keys: Library-
 
-      - uses: game-ci/unity-builder@v4
+      - name: Build WebGL
+        if: steps.license.outputs.configured == 'true'
+        uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
@@ -28,7 +45,9 @@ jobs:
         with:
           targetPlatform: WebGL
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload WebGL artifact
+        if: steps.license.outputs.configured == 'true'
+        uses: actions/upload-artifact@v4
         with:
           name: WebGL-Build
           path: build/WebGL
